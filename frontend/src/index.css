@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: theme('fontFamily.sans'); -webkit-font-smoothing: antialiased; }
+  body { background: theme('colors.ivory'); color: theme('colors.ink'); }
+  h1,h2,h3,h4 { font-family: theme('fontFamily.display'); letter-spacing: -0.02em; }
+}
+
+@layer components {
+  .container-luxe { @apply w-full mx-auto px-5 max-w-7xl; }
+  .section-pad { @apply py-20; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3 text-sm font-medium text-ivory transition hover:bg-emerald-deep; }
+  .btn-outline { @apply inline-flex items-center justify-center gap-2 rounded-full border border-emerald/30 px-6 py-3 text-sm font-medium text-emerald transition hover:bg-emerald hover:text-ivory; }
+  .text-brass-gradient { background: linear-gradient(135deg,#e3c98a,#a8843f); -webkit-background-clip:text; background-clip:text; color:transparent; }
+}

@@ -1,0 +1,8 @@
+User-agent: *
+
+Allow: /
+
+Disallow: /admin
+Disallow: /auth
+
+Sitemap: https://lavishlivinginteriors.in/sitemap.xml
