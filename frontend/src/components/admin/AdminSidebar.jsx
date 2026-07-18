@@ -3,6 +3,7 @@ import {
   Images,
   MessageSquare,
   PlusCircle,
+  Star,
 } from "lucide-react";
 
 export default function AdminSidebar({
@@ -30,6 +31,11 @@ export default function AdminSidebar({
     id: "inquiries",
     label: "Inquiries",
     icon: MessageSquare,
+  },
+  {
+    id: "reviews",
+    label: "Reviews",
+    icon: Star,
   },
 ];
 

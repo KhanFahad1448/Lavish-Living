@@ -1,7 +1,13 @@
+import Testimonials from "../components/Testimonials";
+import ReviewForm from "../components/ReviewForm";
+
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, ChefHat, BedDouble, Sofa, Lightbulb, DoorOpen, Building2 } from "lucide-react";
 import InquiryForm from "../components/InquiryForm";
+
+
+
 
 const services = [
   { icon: ChefHat, title: "Modular Kitchen", desc: "Ergonomic layouts, premium hardware, dust-free finishes." },
@@ -157,6 +163,79 @@ export default function Home() {
         </div>
       </section>
 
+       {/* Testimonials */}
+
+     <Testimonials />
+
+
+
+{/* Share Your Experience */}
+
+<section className="section-pad">
+  <div className="container-luxe grid items-center gap-16 lg:grid-cols-2">
+
+    <div>
+
+      <p className="text-xs uppercase tracking-[0.2em] text-brass">
+        Share Your Experience
+      </p>
+
+      <h2 className="mt-3 font-display text-5xl text-emerald-deep">
+        Every beautiful home deserves a story.
+      </h2>
+
+      <p className="mt-6 max-w-lg text-lg leading-8 text-ink/70">
+        If Lavish Living transformed your space, we'd love to hear about
+        your experience. Your review helps future homeowners make
+        confident decisions.
+      </p>
+
+      <div className="mt-10 space-y-4">
+
+        <div className="flex items-center gap-3">
+
+          <span className="text-brass">★★★★★</span>
+
+          <span className="text-sm text-ink/70">
+            Trusted by families across Ranchi
+          </span>
+
+        </div>
+
+        <div className="flex items-center gap-3">
+
+          <span className="text-brass">✓</span>
+
+          <span className="text-sm text-ink/70">
+            Genuine customer experiences
+          </span>
+
+        </div>
+
+        <div className="flex items-center gap-3">
+
+          <span className="text-brass">✓</span>
+
+          <span className="text-sm text-ink/70">
+            Every review is verified before publishing
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div className="rounded-3xl bg-white p-8 shadow-luxe">
+
+      <ReviewForm />
+
+    </div>
+
+  </div>
+</section>
+
+  
       {/* CTA */}
       <section className="section-pad bg-gradient-luxe text-ivory">
         <div className="container-luxe grid items-center gap-10 md:grid-cols-2">
@@ -167,7 +246,7 @@ export default function Home() {
           <div className="rounded-2xl bg-ivory p-6 text-ink shadow-luxe md:p-8">
             <InquiryForm />
           </div>
-        </div>
+        </div> 
       </section>
     </>
   );

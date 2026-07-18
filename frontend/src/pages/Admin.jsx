@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AdminProvider } from "../context/AdminContext";
+import AdminReviews from "./AdminReviews";
 
 import { Helmet } from "react-helmet-async";
 
@@ -60,6 +61,10 @@ export default function Admin() {
 
             {page === "inquiries" && (
               <InquiryManager />
+            )}
+
+            {page === "reviews" && (
+           <AdminReviews />
             )}
 
           </div>
