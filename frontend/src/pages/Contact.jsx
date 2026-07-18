@@ -68,7 +68,7 @@ export default function Contact() {
         <div className="container-luxe grid gap-10 md:grid-cols-2">
           <div className="space-y-6">
             <Row icon={MapPin} title="Studio">Khan Complex, Bariatu Road,<br />Ranchi 834009, Jharkhand</Row>
-            <Row icon={Phone} title="Phone">+91 99999 99999</Row>
+            <Row icon={Phone} title="Phone">+91 80855 09001</Row>
             <Row icon={Mail} title="Email">hello@lavishliving.in</Row>
             <Row icon={Clock} title="Hours">Mon – Sat, 10:00 AM – 7:30 PM</Row>
             <iframe title="Map" className="h-72 w-full rounded-2xl border border-emerald/10"

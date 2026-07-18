@@ -18,7 +18,7 @@ export default function SiteFooter() {
         </div>
         <div>
           <h4 className="mb-3 text-ivory">Contact</h4>
-          <p className="flex items-center gap-2 text-sm"><Phone className="h-4 w-4 text-brass" /> +91 99999 99999</p>
+          <p className="flex items-center gap-2 text-sm"><Phone className="h-4 w-4 text-brass" /> +91 80855 09001</p>
           <p className="mt-2 flex items-center gap-2 text-sm"><Mail className="h-4 w-4 text-brass" /> hello@lavishliving.in</p>
           <p className="mt-2 flex items-center gap-2 text-sm"><Instagram className="h-4 w-4 text-brass" /> @lavishliving.in</p>
         </div>

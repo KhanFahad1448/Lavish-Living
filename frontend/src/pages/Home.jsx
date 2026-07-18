@@ -6,6 +6,18 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Check, ChefHat, BedDouble, Sofa, Lightbulb, DoorOpen, Building2 } from "lucide-react";
 import InquiryForm from "../components/InquiryForm";
 
+import { useState } from "react";
+import ServiceGalleryModal from "../components/ServiceGalleryModal";
+import serviceData from "../data/services";
+
+//Image Imports
+import kitchen1 from "../assets/service-gallery/modular-kitchen/kitchen6.jpg.jpg";
+import bedroom1 from "../assets/service-gallery/bedroom/bedroom4.jpg.jpg";
+import living1 from "../assets/service-gallery/living-dining/living&dining1.jpg.jpg";
+import ceiling1 from "../assets/service-gallery/false-ceiling/FalseCeiling1.jpg.jpg";
+import wardrobe1 from "../assets/service-gallery/wardrobes/wardrobe9.jpg.jpg";
+import dining1 from "../assets/service-gallery/living-dining/living&dining8.jpg.jpg";
+
 
 
 
@@ -19,15 +31,42 @@ const services = [
 ];
 
 const portfolio = [
-  { tag: "Modular Kitchen", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80" },
-  { tag: "Master Bedroom", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=900&q=80" },
-  { tag: "Living Hall", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=80" },
-  { tag: "False Ceiling", img: "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?w=900&q=80" },
-  { tag: "Wardrobe", img: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=900&q=80" },
-  { tag: "Dining", img: "https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=900&q=80" },
+  {
+    tag: "Modular Kitchen",
+    img: kitchen1,
+  },
+
+  {
+    tag: "Master Bedroom",
+    img: bedroom1,
+  },
+
+  {
+    tag: "Living Hall",
+    img: living1,
+  },
+
+  {
+    tag: "False Ceiling",
+    img: ceiling1,
+  },
+
+  {
+    tag: "Wardrobe",
+    img: wardrobe1,
+  },
+
+  {
+    tag: "Dining",
+    img: dining1,
+  },
 ];
 
+
+
+
 export default function Home() {
+  const [selectedService, setSelectedService] = useState(null);
   return (
     <>
       <Helmet>
@@ -130,13 +169,52 @@ export default function Home() {
             <p className="mt-3 text-ink/70">From the first sketch to the last screw — modular kitchens, wardrobes, ceilings, full-home — handled by one team you can call.</p>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="group rounded-2xl border border-emerald/10 bg-ivory p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-luxe">
-                <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-gradient-luxe text-brass"><s.icon className="h-5 w-5" /></div>
-                <h3 className="font-display text-xl text-emerald-deep">{s.title}</h3>
-                <p className="mt-2 text-sm text-ink/70">{s.desc}</p>
-              </div>
-            ))}
+            {serviceData.map((service) => {
+
+  const Icon = service.icon;
+
+  return (
+
+    <button
+      key={service.slug}
+      onClick={() => setSelectedService(service)}
+      className="group rounded-2xl border border-emerald/10 bg-ivory p-7 text-left shadow-soft transition hover:-translate-y-2 hover:shadow-luxe"
+    >
+
+      <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-gradient-luxe text-brass">
+
+        <Icon className="h-5 w-5"/>
+
+      </div>
+
+      <h3 className="font-display text-xl text-emerald-deep">
+
+        {service.title}
+
+      </h3>
+
+      <p className="mt-2 text-sm text-ink/70">
+
+        {service.shortDescription}
+
+      </p>
+
+      <span className="mt-5 inline-flex items-center gap-2 font-semibold text-brass">
+
+        View Designs
+
+        <ArrowRight
+          size={16}
+          className="transition group-hover:translate-x-1"
+        />
+
+      </span>
+
+    </button>
+
+  );
+
+})}
           </div>
         </div>
       </section>
@@ -248,6 +326,13 @@ export default function Home() {
           </div>
         </div> 
       </section>
-    </>
-  );
+
+<ServiceGalleryModal
+    open={selectedService !== null}
+    service={selectedService}
+    onClose={() => setSelectedService(null)}
+/>
+
+</>
+);
 }

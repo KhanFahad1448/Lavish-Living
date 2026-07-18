@@ -11,7 +11,7 @@ const defaultWorks = [
     tag: "Modular Kitchen",
     title: "Olive lacquer parallel kitchen",
     loc: "Harmu, Ranchi",
-    img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500&q=80",
   },
   {
     tag: "Master Bedroom",
@@ -29,7 +29,7 @@ const defaultWorks = [
     tag: "False Ceiling",
     title: "Cove-lit tray ceiling",
     loc: "Kanke Road",
-    img: "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1746439307632-cba0f8effbed?w=500&q=80",
   },
   {
     tag: "Wardrobe",
@@ -41,7 +41,7 @@ const defaultWorks = [
     tag: "Dining",
     title: "Travertine dining nook",
     loc: "Ashok Nagar",
-    img: "https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1751290986099-874a49f457a1?w=500&q=80",
   },
   {
     tag: "Office",
@@ -53,9 +53,10 @@ const defaultWorks = [
     tag: "Kids Room",
     title: "Pastel kids bedroom",
     loc: "Morabadi",
-    img: "https://images.unsplash.com/photo-1558883689-a1d5d5a8d3df?w=1200&q=80",
+    img: "https://images.unsplash.com/photo-1611048267707-aef79593a3ed?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+
 
 export default function Portfolio() {
   const [works, setWorks] = useState(defaultWorks);

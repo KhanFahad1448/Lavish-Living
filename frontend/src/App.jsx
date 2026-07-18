@@ -32,6 +32,7 @@ export default function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
           <Route path="*" element={<div className="container-luxe py-32 text-center"><h1 className="text-4xl">404</h1><p className="mt-2 text-ink/60">Page not found.</p></div>} />
+          {/* <Route path="/services/:slug"element={<ServiceDetails />}/> */}
         </Routes>
       </main>
       <SiteFooter />
