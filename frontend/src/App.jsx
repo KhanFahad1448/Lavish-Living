@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
@@ -35,7 +37,11 @@ export default function App() {
           {/* <Route path="/services/:slug"element={<ServiceDetails />}/> */}
         </Routes>
       </main>
+
       <SiteFooter />
+
+      <FloatingWhatsApp />
+      
     </div>
   );
 }

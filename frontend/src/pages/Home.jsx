@@ -321,9 +321,9 @@ export default function Home() {
             <h2 className="font-display text-4xl">Ready to start your space?</h2>
             <p className="mt-3 text-ivory/80">Visit our studio at Khan Complex, Bariatu Road, Ranchi — or send your details and we'll come to you.</p>
           </div>
-          <div className="rounded-2xl bg-ivory p-6 text-ink shadow-luxe md:p-8">
+          {/* <div className="rounded-2xl bg-ivory p-6 text-ink shadow-luxe md:p-8">
             <InquiryForm />
-          </div>
+          </div> */}
         </div> 
       </section>
 
