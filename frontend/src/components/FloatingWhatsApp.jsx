@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function FloatingWhatsApp() {
+  const [showCard, setShowCard] = useState(true);
+
   const phone = "918085509001"; // Replace with your number
 
   const message =
@@ -10,34 +13,54 @@ export default function FloatingWhatsApp() {
     message
   )}`;
 
-  return (
-    <div className="fixed bottom-6 right-5 z-[9999] flex items-end gap-3">
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCard(false);
+    }, 6000);
 
-      {/* Chat Bubble */}
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div
+      className="fixed bottom-6 right-5 z-[9999] flex items-end gap-3"
+      onMouseEnter={() => setShowCard(true)}
+      onMouseLeave={() => setShowCard(false)}
+    >
+      {/* Floating Card */}
 
       <div
-        className="
-          hidden
-          md:flex
-          animate-[fadeIn_1s_ease]
-          flex-col
-          rounded-2xl
-          bg-white/95
-          backdrop-blur-md
-          px-5
-          py-3
-          shadow-2xl
-          border
-          border-emerald-100
-        "
+        className={`
+        hidden md:block
+        transition-all duration-500
+        ${
+          showCard
+            ? "translate-x-0 opacity-100"
+            : "translate-x-10 opacity-0 pointer-events-none"
+        }
+      `}
       >
-        <span className="font-semibold text-emerald-deep">
-          Need Help?
-        </span>
+        <div className="rounded-2xl border border-emerald-100 bg-white/95 px-5 py-4 shadow-2xl backdrop-blur-md">
 
-        <span className="text-sm text-gray-500">
-          Typically replies instantly
-        </span>
+          <p className="text-lg font-semibold text-emerald-deep">
+
+            👋 Welcome!
+
+          </p>
+
+          <p className="mt-1 text-sm text-gray-500">
+
+            Need help designing your dream home?
+
+          </p>
+
+          <p className="mt-1 text-xs text-brass">
+
+            Typically replies instantly
+
+          </p>
+
+        </div>
       </div>
 
       {/* WhatsApp Button */}
@@ -46,31 +69,29 @@ export default function FloatingWhatsApp() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
+        aria-label="WhatsApp"
         className="
-          group
-          relative
-          flex
-          h-16
-          w-16
-          items-center
-          justify-center
-          rounded-full
-          bg-[#25D366]
-          shadow-2xl
-          transition-all
-          duration-300
-          hover:scale-110
-          hover:rotate-6
-        "
+        relative
+        flex
+        h-16
+        w-16
+        items-center
+        justify-center
+        rounded-full
+        bg-[#25D366]
+        shadow-2xl
+        transition-all
+        duration-300
+        hover:scale-110
+      "
       >
-        {/* Soft Pulse */}
+        {/* Pulse */}
 
-        <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20"></span>
+        <span className="absolute h-full w-full animate-ping rounded-full bg-[#25D366] opacity-20"></span>
 
         <FaWhatsapp
-          className="relative text-white"
           size={38}
+          className="relative text-white"
         />
       </a>
     </div>
