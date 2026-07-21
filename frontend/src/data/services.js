@@ -19,7 +19,7 @@ export const services = [
       "Luxury modular kitchens designed for functionality, elegance and everyday comfort.",
 
     heroImage:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80",
+      "https://images.unsplash.com/photo-1663811396777-05505d999151?w=1600&q=80",
 
     gallery: "modular-kitchen",
 
@@ -65,7 +65,7 @@ export const services = [
       "Premium living spaces crafted to impress your guests and your family.",
 
     heroImage:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80",
+      "https://images.unsplash.com/photo-1775612158146-89d371c68978?w=1600&q=80",
 
     gallery: "living-dining",
 
@@ -89,7 +89,7 @@ export const services = [
       "Designer ceilings with modern lighting and elegant finishes.",
 
     heroImage:
-      "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?w=1600&q=80",
+      "https://images.unsplash.com/photo-1651519841343-4a9a2d1f3bd3?w=1600&q=80",
 
     gallery: "false-ceiling",
 
@@ -113,7 +113,7 @@ export const services = [
       "Luxury wardrobes designed for style, organization and convenience.",
 
     heroImage:
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1600&q=80",
+      "https://images.unsplash.com/photo-1618236444721-4a8dba415c15?w=1600&q=80",
 
     gallery: "wardrobes",
 
@@ -161,7 +161,7 @@ export const services = [
       "Premium wall finishes that completely transform your interiors.",
 
     heroImage:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600&q=80",
+      "https://images.unsplash.com/photo-1582721719415-672dab4c1640?w=1600&q=80",
 
     gallery: "paint-wallpaper",
 
@@ -185,7 +185,7 @@ export const services = [
       "Luxury flooring and premium wall panelling for timeless interiors.",
 
     heroImage:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1600&q=80",
+      "https://images.unsplash.com/photo-1600728611365-b8fc376080a8?w=1600&q=80",
 
     gallery: "flooring",
 
