@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import TrustedBrands from "../components/TrustedBrands";
 
 export default function About() {
   return (
@@ -77,6 +78,7 @@ export default function About() {
         </div>
       </section>
       <section className="section-pad bg-cream">
+        
         <div className="container-luxe grid gap-10 md:grid-cols-2">
           <div>
             <h2 className="font-display text-4xl text-emerald-deep">Our approach</h2>
@@ -85,7 +87,11 @@ export default function About() {
           </div>
           <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&q=80" alt="Interior" className="aspect-[4/3] w-full rounded-2xl object-cover shadow-luxe" />
         </div>
+
       </section>
+
+      <TrustedBrands />
+
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Testimonials from "../components/Testimonials";
 import ReviewForm from "../components/ReviewForm";
 import FAQ from "../components/FAQ";
+import TrustedBrands from "../components/TrustedBrands";
 
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -330,6 +331,8 @@ export default function Home() {
 
 
       <FAQ />
+
+      <TrustedBrands />
 
 
     <ServiceGalleryModal
