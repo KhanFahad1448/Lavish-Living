@@ -1,5 +1,6 @@
 import Testimonials from "../components/Testimonials";
 import ReviewForm from "../components/ReviewForm";
+import FAQ from "../components/FAQ";
 
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -247,26 +248,26 @@ export default function Home() {
 
 
 
-{/* Share Your Experience */}
+     {/* Share Your Experience */}
 
-<section className="section-pad">
-  <div className="container-luxe grid items-center gap-16 lg:grid-cols-2">
+    <section className="section-pad">
+      <div className="container-luxe grid items-center gap-16 lg:grid-cols-2">
 
-    <div>
+      <div>
 
-      <p className="text-xs uppercase tracking-[0.2em] text-brass">
-        Share Your Experience
-      </p>
+         <p className="text-xs uppercase tracking-[0.2em] text-brass">
+          Share Your Experience
+        </p>
 
-      <h2 className="mt-3 font-display text-5xl text-emerald-deep">
-        Every beautiful home deserves a story.
-      </h2>
+        <h2 className="mt-3 font-display text-5xl text-emerald-deep">
+          Every beautiful home deserves a story.
+        </h2>
 
-      <p className="mt-6 max-w-lg text-lg leading-8 text-ink/70">
-        If Lavish Living transformed your space, we'd love to hear about
-        your experience. Your review helps future homeowners make
-        confident decisions.
-      </p>
+        <p className="mt-6 max-w-lg text-lg leading-8 text-ink/70">
+          If Lavish Living transformed your space, we'd love to hear about
+          your experience. Your review helps future homeowners make
+          confident decisions.
+       </p>
 
       <div className="mt-10 space-y-4">
 
@@ -310,8 +311,8 @@ export default function Home() {
 
     </div>
 
-  </div>
-</section>
+    </div>
+   </section>
 
   
       {/* CTA */}
@@ -327,12 +328,16 @@ export default function Home() {
         </div> 
       </section>
 
-<ServiceGalleryModal
+
+      <FAQ />
+
+
+    <ServiceGalleryModal
     open={selectedService !== null}
     service={selectedService}
     onClose={() => setSelectedService(null)}
-/>
+     />
 
-</>
-);
+   </>
+  );
 }
