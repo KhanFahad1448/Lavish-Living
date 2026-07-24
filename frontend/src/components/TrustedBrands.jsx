@@ -55,7 +55,7 @@ export default function TrustedBrands() {
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="max-h-16 w-auto object-contain grayscale transition duration-300 group-hover:grayscale-0"
+                className="max-h-16 w-auto object-contain transition duration-300 md:grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
               />
             </div>
           ))}
