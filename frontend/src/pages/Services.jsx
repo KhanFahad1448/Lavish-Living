@@ -1,24 +1,19 @@
-import { ChefHat, BedDouble, Sofa, Lightbulb, DoorOpen, Building2, Paintbrush, Layers } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import InquiryForm from "../components/InquiryForm";
+import ServiceGalleryModal from "../components/ServiceGalleryModal";
+import serviceData from "../data/services";
 import { Helmet } from "react-helmet-async";
 
-const items = [
-  { icon: ChefHat, t: "Modular Kitchen", d: "L-shape, U-shape, island & parallel layouts in PU, lacquered glass or premium laminate. Hettich/Hafele hardware standard." },
-  { icon: BedDouble, t: "Bedroom Interiors", d: "Wardrobes, beds, bedside units, study desks and dressers — designed around your daily rhythm." },
-  { icon: Sofa, t: "Living & Dining", d: "TV consoles, accent walls, crockery units, bar units and crafted seating zones." },
-  { icon: Lightbulb, t: "False Ceiling", d: "Cove, tray, gypsum & POP ceilings with layered lighting design." },
-  { icon: DoorOpen, t: "Wardrobes & Storage", d: "Sliding, openable, walk-in. Acrylic, laminate, PU or fabric finishes." },
-  { icon: Building2, t: "Office & Commercial", d: "Workstations, cabins, retail fit-outs, clinics and cafés." },
-  { icon: Paintbrush, t: "Paint, Wallpaper & Texture", d: "Curated colour palettes, imported wallpapers and Italian textures." },
-  { icon: Layers, t: "Flooring & Panelling", d: "Wooden, vinyl, marble inlay flooring and decorative wall panelling." },
-];
-
 export default function Services() {
+  const [selectedService, setSelectedService] = useState(null);
+
   return (
     <>
-          <Helmet>
+      <Helmet>
         <title>
-          Interior Design Services in Ranchi | Modular Kitchen, Bedroom & False Ceiling | Lavish Living
+          Interior Design Services in Ranchi | Modular Kitchen, Bedroom &
+          False Ceiling | Lavish Living
         </title>
 
         <meta
@@ -36,33 +31,92 @@ export default function Services() {
           href="https://lavishlivinginteriors.com/services"
         />
       </Helmet>
+
+      {/* Hero */}
       <section className="bg-gradient-luxe py-24 text-ivory">
         <div className="container-luxe max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.2em] text-brass">Services</p>
-          <h1 className="mt-3 font-display text-5xl">A one-stop interior solution.</h1>
-          <p className="mt-4 text-ivory/80">Every trade under one roof — design, carpentry, electrical, false ceiling, painting, and installation. No coordinating five contractors.</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-brass">
+            Services
+          </p>
+
+          <h1 className="mt-3 font-display text-5xl">
+            A one-stop interior solution.
+          </h1>
+
+          <p className="mt-4 text-ivory/80">
+            Every trade under one roof — design, carpentry, electrical, false
+            ceiling, painting, and installation. No coordinating multiple
+            contractors.
+          </p>
         </div>
       </section>
+
+      {/* Services Grid */}
       <section className="section-pad">
         <div className="container-luxe grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((s) => (
-            <article key={s.t} className="rounded-2xl border border-emerald/10 bg-ivory p-7 shadow-soft">
-              <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-gradient-luxe text-brass"><s.icon className="h-5 w-5" /></div>
-              <h3 className="font-display text-xl text-emerald-deep">{s.t}</h3>
-              <p className="mt-2 text-sm text-ink/70">{s.d}</p>
-            </article>
-          ))}
+
+          {serviceData.map((service) => {
+            const Icon = service.icon;
+
+            return (
+              <div
+                key={service.slug}
+                onClick={() => setSelectedService(service)}
+                className="group cursor-pointer rounded-2xl border border-emerald/10 bg-ivory p-7 shadow-soft transition duration-300 hover:-translate-y-2 hover:shadow-luxe"
+              >
+                <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-gradient-luxe text-brass">
+                  <Icon className="h-5 w-5" />
+                </div>
+
+                <h3 className="font-display text-xl text-emerald-deep">
+                  {service.title}
+                </h3>
+
+                <p className="mt-2 text-sm text-ink/70">
+                  {service.shortDescription}
+                </p>
+
+                <span className="mt-5 inline-flex items-center gap-2 font-semibold text-brass">
+                  View Details
+                  <ArrowRight
+                    size={16}
+                    className="transition group-hover:translate-x-1"
+                  />
+                </span>
+              </div>
+            );
+          })}
+
         </div>
       </section>
+
+      {/* Quote Section */}
       <section className="section-pad bg-cream">
         <div className="container-luxe grid gap-10 md:grid-cols-2">
           <div>
-            <h2 className="font-display text-4xl text-emerald-deep">Request a quote</h2>
-            <p className="mt-3 text-ink/70">Share a few details and we'll put together a transparent, line-item quote within 48 hours.</p>
+            <h2 className="font-display text-4xl text-emerald-deep">
+              Request a Quote
+            </h2>
+
+            <p className="mt-3 text-ink/70">
+              Share a few details and we'll prepare a transparent quotation
+              tailored to your space within 48 hours.
+            </p>
           </div>
-          <div className="rounded-2xl bg-ivory p-6 shadow-soft md:p-8"><InquiryForm /></div>
+
+          <div className="rounded-2xl bg-ivory p-6 shadow-soft md:p-8">
+            <InquiryForm />
+          </div>
         </div>
       </section>
+
+      {/* Service Modal */}
+      <ServiceGalleryModal
+        open={!!selectedService}
+        service={selectedService}
+        onClose={() => setSelectedService(null)}
+      />
     </>
   );
 }
+

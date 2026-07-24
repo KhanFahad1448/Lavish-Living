@@ -14,9 +14,18 @@ import { useAuth } from "./context/AuthContext";
 
 function RequireAdmin({ children }) {
   const { user, loading } = useAuth();
-  if (loading) return <div className="container-luxe py-32 text-center text-ink/60">Loading…</div>;
+
+  if (loading)
+    return (
+      <div className="container-luxe py-32 text-center text-ink/60">
+        Loading…
+      </div>
+    );
+
   if (!user) return <Navigate to="/auth" replace />;
+
   if (user.role !== "admin") return <Navigate to="/" replace />;
+
   return children;
 }
 
@@ -24,30 +33,50 @@ export default function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
+
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/services" element={<Services />} />
+
           <Route path="/portfolio" element={<Portfolio />} />
+
           <Route path="/about" element={<About />} />
+
           <Route path="/contact" element={<Contact />} />
+
           <Route path="/auth" element={<Auth />} />
-          <Route path="/admin" element={<RequireAdmin><Admin /></RequireAdmin>} />
-          <Route path="*" element={<div className="container-luxe py-32 text-center"><h1 className="text-4xl">404</h1><p className="mt-2 text-ink/60">Page not found.</p></div>} />
-          {/* <Route path="/services/:slug"element={<ServiceDetails />}/> */}
+
+          <Route
+            path="/admin"
+            element={
+              <RequireAdmin>
+                <Admin />
+              </RequireAdmin>
+            }
+          />
+
+          <Route
+            path="*"
+            element={
+              <div className="container-luxe py-32 text-center">
+                <h1 className="text-4xl">404</h1>
+                <p className="mt-2 text-ink/60">
+                  Page not found.
+                </p>
+              </div>
+            }
+          />
         </Routes>
       </main>
 
       <SiteFooter />
 
       <FloatingWhatsApp />
-      
     </div>
   );
 }
-
-
-
 
 // export default function App() {
 //   return (
