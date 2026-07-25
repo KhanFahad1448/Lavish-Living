@@ -2,6 +2,13 @@ import mongoose from "mongoose";
 
 const inquirySchema = new mongoose.Schema(
   {
+    // User who submitted the inquiry
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+       default: null,
+    },
+
     name: {
       type: String,
       required: true,

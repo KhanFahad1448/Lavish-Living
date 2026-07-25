@@ -1,7 +1,7 @@
-
 import express from "express";
 import {
   createInquiry,
+  getMyInquiries,
   getAllInquiries,
   updateInquiryStatus,
   deleteInquiry,
@@ -9,6 +9,7 @@ import {
 
 import {
   protect,
+  optionalAuth,
   adminOnly,
 } from "../middleware/authMiddleware.js";
 
@@ -19,7 +20,24 @@ const router = express.Router();
 // =========================
 
 // Customer submits inquiry
-router.post("/", createInquiry);
+// Guests can submit inquiries.
+// Logged-in users will automatically be linked to their account.
+router.post(
+  "/",
+  optionalAuth,
+  createInquiry
+);
+
+// =========================
+// Customer Protected Routes
+// =========================
+
+// Logged-in user can view only their own inquiries
+router.get(
+  "/my",
+  protect,
+  getMyInquiries
+);
 
 // =========================
 // Admin Routes
@@ -50,4 +68,3 @@ router.delete(
 );
 
 export default router;
-

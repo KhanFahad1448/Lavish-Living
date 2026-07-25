@@ -24,6 +24,8 @@ export const createInquiry = async (req, res) => {
     }
 
     const inquiry = await Inquiry.create({
+      user: req.user ? req.user._id : null,
+
       name,
       phone,
       email,
@@ -49,13 +51,40 @@ export const createInquiry = async (req, res) => {
 };
 
 // =========================
+// GET MY INQUIRIES
+// =========================
+export const getMyInquiries = async (req, res) => {
+  try {
+    const inquiries = await Inquiry.find({
+      user: req.user._id,
+    }).sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json({
+      success: true,
+      inquiries,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// =========================
 // GET ALL
 // =========================
 export const getAllInquiries = async (req, res) => {
   try {
-    const inquiries = await Inquiry.find().sort({
-      createdAt: -1,
-    });
+    const inquiries = await Inquiry.find()
+      .populate("user", "name email")
+      .sort({
+        createdAt: -1,
+      });
 
     res.json({
       success: true,
