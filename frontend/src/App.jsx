@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import MyInquiries from "./pages/MyInquiries";
 import { useAuth } from "./context/AuthContext";
 
 function RequireAdmin({ children }) {
@@ -25,6 +26,24 @@ function RequireAdmin({ children }) {
   if (!user) return <Navigate to="/auth" replace />;
 
   if (user.role !== "admin") return <Navigate to="/" replace />;
+
+  return children;
+}
+
+// ==============================
+// NEW: Require Logged-in User
+// ==============================
+function RequireAuth({ children }) {
+  const { user, loading } = useAuth();
+
+  if (loading)
+    return (
+      <div className="container-luxe py-32 text-center text-ink/60">
+        Loading…
+      </div>
+    );
+
+  if (!user) return <Navigate to="/auth" replace />;
 
   return children;
 }
@@ -47,6 +66,18 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/auth" element={<Auth />} />
+
+          {/* ===========================
+              My Enquiries (Protected)
+          ============================ */}
+          <Route
+            path="/my-enquiries"
+            element={
+              <RequireAuth>
+                <MyInquiries />
+              </RequireAuth>
+            }
+          />
 
           <Route
             path="/admin"
