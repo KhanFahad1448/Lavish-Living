@@ -34,6 +34,42 @@ export const createInquiry = async (req, res) => {
       budget,
       projectType,
       message,
+
+      // =====================================
+      // Default Timeline
+      // =====================================
+      timeline: [
+        {
+          title: "Enquiry Submitted",
+          completed: true,
+          completedAt: new Date(),
+          remark: "Your enquiry has been received successfully.",
+        },
+        {
+          title: "Designer Contacted",
+          completed: false,
+          completedAt: null,
+          remark: "",
+        },
+        {
+          title: "Site Visit Scheduled",
+          completed: false,
+          completedAt: null,
+          remark: "",
+        },
+        {
+          title: "Work Started",
+          completed: false,
+          completedAt: null,
+          remark: "",
+        },
+        {
+          title: "Project Completed",
+          completed: false,
+          completedAt: null,
+          remark: "",
+        },
+      ],
     });
 
     res.status(201).json({
@@ -131,6 +167,40 @@ export const updateInquiryStatus = async (req, res) => {
     }
 
     inquiry.status = status;
+
+    // =====================================
+    // Auto Update Timeline
+    // =====================================
+
+    if (status === "contacted") {
+      inquiry.timeline[1].completed = true;
+      inquiry.timeline[1].completedAt = new Date();
+      inquiry.timeline[1].remark =
+        "Our designer has contacted you.";
+    }
+
+    if (status === "converted") {
+      inquiry.timeline[1].completed = true;
+      inquiry.timeline[1].completedAt =
+        inquiry.timeline[1].completedAt || new Date();
+
+      inquiry.timeline[2].completed = true;
+      inquiry.timeline[2].completedAt = new Date();
+      inquiry.timeline[2].remark =
+        "Site visit completed.";
+
+      inquiry.timeline[3].completed = true;
+      inquiry.timeline[3].completedAt = new Date();
+      inquiry.timeline[3].remark =
+        "Interior work has started.";
+    }
+
+    if (status === "closed") {
+      inquiry.timeline[4].completed = true;
+      inquiry.timeline[4].completedAt = new Date();
+      inquiry.timeline[4].remark =
+        "Project completed successfully.";
+    }
 
     await inquiry.save();
 

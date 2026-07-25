@@ -6,7 +6,7 @@ const inquirySchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-       default: null,
+      default: null,
     },
 
     name: {
@@ -59,6 +59,33 @@ const inquirySchema = new mongoose.Schema(
       enum: ["new", "contacted", "converted", "closed"],
       default: "new",
     },
+
+    // =====================================
+    // Project Timeline
+    // =====================================
+    timeline: [
+      {
+        title: {
+          type: String,
+          required: true,
+        },
+
+        completed: {
+          type: Boolean,
+          default: false,
+        },
+
+        completedAt: {
+          type: Date,
+          default: null,
+        },
+
+        remark: {
+          type: String,
+          default: "",
+        },
+      },
+    ],
   },
   {
     timestamps: true,

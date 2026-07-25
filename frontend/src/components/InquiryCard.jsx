@@ -2,7 +2,7 @@ import {
   CalendarDays,
   IndianRupee,
   MapPin,
-  Home,
+  Phone,
   BadgeCheck,
 } from "lucide-react";
 
@@ -66,9 +66,9 @@ export default function InquiryCard({ inquiry }) {
         />
 
         <Info
-          icon={Home}
-          label="Project Type"
-          value={inquiry.projectType || "Not specified"}
+          icon={Phone}
+          label="Phone"
+          value={inquiry.phone || "Not available"}
         />
 
         <Info

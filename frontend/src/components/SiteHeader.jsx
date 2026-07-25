@@ -122,11 +122,13 @@ export default function SiteHeader() {
                         My Profile
                       </button>
 
-                      <button
-                        className="block w-full px-5 py-3 text-left text-sm transition hover:bg-cream"
-                      >
+                      <Link
+                        to="/my-enquiries"
+                        onClick={() => setProfileOpen(false)}
+                        className="block px-5 py-3 text-sm transition hover:bg-cream"
+                        >
                         My Enquiries
-                      </button>
+                      </Link>
                     </>
                   )}
 
@@ -216,6 +218,18 @@ export default function SiteHeader() {
                 </div>
               </div>
             )}
+
+
+            {user && user.role !== "admin" && (
+             <Link
+              to="/my-enquiries"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-xl border border-emerald/10 bg-white px-4 py-3 text-sm font-medium text-emerald transition hover:border-brass"
+              >
+               My Enquiries
+            </Link>
+            )}
+            
 
             {user ? (
               <button
