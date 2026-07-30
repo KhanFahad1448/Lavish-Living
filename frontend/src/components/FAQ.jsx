@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
@@ -39,47 +38,59 @@ export default function FAQ() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="section-pad bg-cream">
-      <div className="container-luxe">
+    <section className="bg-cream py-12 sm:py-14 lg:py-16">
+
+      <div className="container-luxe max-w-6xl">
 
         {/* Section Heading */}
-        <div className="mb-16 text-center">
 
-          <span className="inline-flex items-center rounded-full border border-brass/30 bg-brass/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brass">
+        <div className="mx-auto mb-8 max-w-3xl text-center lg:mb-10">
+
+          <span className="inline-flex items-center rounded-full border border-brass/30 bg-brass/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brass sm:px-4 sm:text-xs">
+
             Frequently Asked Questions
+
           </span>
 
-          <h2 className="mt-5 font-display text-4xl leading-tight text-emerald-deep md:text-6xl">
+          <h2 className="mt-3 font-display text-2xl leading-tight text-emerald-deep sm:text-3xl lg:text-4xl">
+
             Planning Your
             <br />
+
             <span className="text-brass-gradient">
               Dream Interior?
             </span>
+
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-ink/65">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-ink/65 sm:text-[15px] sm:leading-7">
+
             Whether you're planning a complete home interior, a luxury
             modular kitchen, or renovating a single room, here are the
             answers to the questions our clients ask before beginning
             their journey with
+
             <span className="font-semibold text-emerald-deep">
               {" "}Lavish Living.
             </span>
+
           </p>
 
         </div>
 
         {/* FAQ Cards */}
-        <div className="mx-auto max-w-4xl space-y-5">
+
+        <div className="mx-auto max-w-3xl space-y-3 lg:max-w-4xl">
 
           {faqs.map((faq, index) => {
 
             const open = active === index;
 
             return (
+
               <div
                 key={index}
-                className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
+                className={`overflow-hidden rounded-xl sm:rounded-2xl border transition-all duration-300 ${
                   open
                     ? "border-brass/40 bg-white shadow-luxe"
                     : "border-emerald/10 bg-white shadow-soft hover:border-brass/20 hover:shadow-md"
@@ -88,21 +99,30 @@ export default function FAQ() {
 
                 <button
                   onClick={() => setActive(open ? -1 : index)}
-                  className="flex w-full items-center justify-between px-7 py-6 text-left"
+                  className="flex w-full items-center justify-between px-4 py-4 text-left sm:px-6 sm:py-5 lg:px-6 lg:py-5"
                 >
-                  <h3 className="font-display text-xl text-emerald-deep">
+
+                  <h3 className="pr-4 font-display text-base leading-6 text-emerald-deep sm:text-lg lg:text-[20px]">
+
                     {faq.question}
+
                   </h3>
 
                   <div
-                    className={`grid h-10 w-10 place-items-center rounded-full transition-all duration-300 ${
+                    className={`grid h-8 w-8 flex-shrink-0 place-items-center rounded-full transition-all duration-300 sm:h-9 sm:w-9 ${
                       open
                         ? "bg-brass text-emerald-deep rotate-180"
                         : "bg-emerald-deep/5 text-emerald-deep"
                     }`}
                   >
-                    <ChevronDown size={20} />
+
+                    <ChevronDown
+                      size={16}
+                      className="sm:h-[18px] sm:w-[18px]"
+                    />
+
                   </div>
+
                 </button>
 
                 <div
@@ -112,14 +132,19 @@ export default function FAQ() {
                       : "grid-rows-[0fr]"
                   }`}
                 >
+
                   <div className="overflow-hidden">
-                    <p className="px-7 pb-7 leading-8 text-ink/70">
-                      {faq.answer}
+
+                    <p className="px-4 pb-4 text-sm leading-6 text-ink/70 sm:px-6 sm:pb-5 sm:text-[15px] sm:leading-7 lg:px-6 lg:pb-6 lg:text-base lg:leading-7">
+                     {faq.answer}
                     </p>
+
                   </div>
+
                 </div>
 
               </div>
+
             );
 
           })}
@@ -127,6 +152,7 @@ export default function FAQ() {
         </div>
 
       </div>
+
     </section>
   );
 }
