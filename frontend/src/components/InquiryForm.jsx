@@ -42,7 +42,7 @@ export default function InquiryForm({ compact = false }) {
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Full name *" name="name" placeholder="Aditi Sharma" required />
+        <Field label="Full name *" name="name" placeholder="Khan Fahad" required />
         <Field label="Phone *" name="phone" type="tel" placeholder="+91 ..." required />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
