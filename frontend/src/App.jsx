@@ -3,6 +3,7 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
+
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
@@ -10,6 +11,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Profile from "./pages/Profile";
 import MyInquiries from "./pages/MyInquiries";
 import { useAuth } from "./context/AuthContext";
 
@@ -66,6 +68,8 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/auth" element={<Auth />} />
+
+          <Route path="/profile" element={<Profile />} />
 
           {/* ===========================
               My Enquiries (Protected)

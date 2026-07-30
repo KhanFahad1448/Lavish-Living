@@ -116,18 +116,20 @@ export default function SiteHeader() {
                     </Link>
                   ) : (
                     <>
-                      <button
-                        className="block w-full px-5 py-3 text-left text-sm transition hover:bg-cream"
+                      <Link
+                        to="/profile"
+                        onClick={() => setProfileOpen(false)}
+                        className="block px-5 py-3 text-sm transition hover:bg-cream"
                       >
                         My Profile
-                      </button>
+                      </Link>
 
                       <Link
                         to="/my-enquiries"
                         onClick={() => setProfileOpen(false)}
                         className="block px-5 py-3 text-sm transition hover:bg-cream"
                         >
-                        My Enquiries
+                           My Enquiries
                       </Link>
                     </>
                   )}
