@@ -125,42 +125,126 @@ export default function Home() {
 
 
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-luxe" />
-        <div className="absolute inset-0 -z-10 opacity-30" style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80')",
-          backgroundSize: "cover", backgroundPosition: "center"
-        }} />
-        <div className="container-luxe grid gap-12 py-24 md:grid-cols-2 md:py-32">
-          <div className="text-ivory">
-            <p className="mb-4 inline-block rounded-full border border-brass/40 bg-emerald-deep/40 px-3 py-1 text-xs uppercase tracking-wider text-brass">Ranchi · Since 2019</p>
-            <h1 className="font-display text-5xl leading-tight md:text-6xl">
-              Interiors that feel <span className="text-brass-gradient">lavishly lived-in.</span>
-            </h1>
-            <p className="mt-5 max-w-lg text-lg text-ivory/80">
-              One studio. Every room. From modular kitchens to false ceilings — we design, build and install end-to-end so you move in to a home that's truly yours.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#inquiry" className="btn-primary bg-brass text-emerald-deep hover:bg-brass-light">
-                Get a free design consult <ArrowRight className="h-4 w-4" />
-              </a>
-              <Link to="/portfolio" className="btn-outline border-ivory/30 text-ivory hover:bg-ivory hover:text-emerald-deep">
-                See our work
-              </Link>
-            </div>
-            <ul className="mt-10 grid gap-3 text-sm text-ivory/80 sm:grid-cols-2">
-              {["10-year service warranty", "ISO-certified materials", "In-house carpentry team", "Flat 45-day turnaround"].map((f) => (
-                <li key={f} className="flex items-center gap-2"><Check className="h-4 w-4 text-brass" /> {f}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl bg-ivory/95 p-6 shadow-luxe md:p-8" id="inquiry">
-            <h2 className="font-display text-2xl text-emerald-deep">Book a free consult</h2>
-            <p className="mb-4 text-sm text-ink/60">Tell us about your space — our designer reaches out within 24 hours.</p>
-            <InquiryForm compact />
-          </div>
-        </div>
-      </section>
+<section className="relative overflow-hidden">
+
+  <div className="absolute inset-0 -z-10 bg-gradient-luxe" />
+
+  <div
+    className="absolute inset-0 -z-10 opacity-30"
+    style={{
+      backgroundImage:
+        "url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
+
+  <div className="container-luxe grid gap-6 py-10 md:grid-cols-2 md:gap-8 md:py-14 lg:py-16">
+
+    {/* LEFT */}
+
+    <div className="flex flex-col justify-center text-ivory">
+
+      <p className="mb-2 inline-flex w-fit rounded-full border border-brass/40 bg-emerald-deep/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-brass sm:text-[11px]">
+
+        Ranchi · Since 2019
+
+      </p>
+
+      <h1 className="font-display text-[30px] leading-[1.15] sm:text-[38px] lg:text-[46px]">
+
+        Interiors that feel{" "}
+
+        <span className="text-brass-gradient">
+
+          lavishly lived-in.
+
+        </span>
+
+      </h1>
+
+      <p className="mt-3 max-w-md text-[14px] leading-6 text-ivory/80 sm:text-[15px]">
+
+        One studio. Every room. From modular kitchens to false ceilings —
+        we design, build and install end-to-end so you move in to a home
+        that's truly yours.
+
+      </p>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+
+        <a
+          href="#inquiry"
+          className="btn-primary bg-brass px-4 py-2 text-sm text-emerald-deep hover:bg-brass-light"
+        >
+          Get a free design consult
+
+          <ArrowRight className="h-4 w-4" />
+
+        </a>
+
+        <Link
+          to="/portfolio"
+          className="btn-outline border-ivory/30 px-4 py-2 text-sm text-ivory hover:bg-ivory hover:text-emerald-deep"
+        >
+          See our work
+        </Link>
+
+      </div>
+
+      <ul className="mt-5 grid gap-2 text-[12px] text-ivory/80 sm:grid-cols-2">
+
+        {[
+          "10-year service warranty",
+          "ISO-certified materials",
+          "In-house carpentry team",
+          "Flat 45-day turnaround",
+        ].map((f) => (
+
+          <li
+            key={f}
+            className="flex items-center gap-2"
+          >
+
+            <Check className="h-3.5 w-3.5 text-brass" />
+
+            {f}
+
+          </li>
+
+        ))}
+
+      </ul>
+
+    </div>
+
+    {/* RIGHT */}
+
+    <div
+      className="rounded-2xl bg-ivory/95 p-4 shadow-luxe md:p-5 lg:p-6"
+      id="inquiry"
+    >
+
+      <h2 className="font-display text-xl text-emerald-deep sm:text-2xl">
+
+        Book a free consult
+
+      </h2>
+
+      <p className="mb-3 mt-1 text-[13px] leading-6 text-ink/60">
+
+        Tell us about your space — our designer reaches out within 24
+        hours.
+
+      </p>
+
+      <InquiryForm compact />
+
+     </div>
+
+   </div>
+
+    </section>
 
       {/* SERVICES */}
       <section className="section-pad bg-cream">

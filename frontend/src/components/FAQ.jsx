@@ -38,38 +38,30 @@ export default function FAQ() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-cream py-12 sm:py-14 lg:py-16">
+    <section className="bg-cream py-8 md:py-12">
 
-      <div className="container-luxe max-w-6xl">
+      <div className="container-luxe max-w-5xl">
 
-        {/* Section Heading */}
+        {/* Heading */}
 
-        <div className="mx-auto mb-8 max-w-3xl text-center lg:mb-10">
+        <div className="mx-auto mb-8 max-w-2xl text-center">
 
-          <span className="inline-flex items-center rounded-full border border-brass/30 bg-brass/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brass sm:px-4 sm:text-xs">
+          <span className="inline-flex rounded-full border border-brass/20 bg-brass/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brass sm:text-[11px]">
 
             Frequently Asked Questions
 
           </span>
 
-          <h2 className="mt-3 font-display text-2xl leading-tight text-emerald-deep sm:text-3xl lg:text-4xl">
+          <h2 className="mt-3 font-display text-[22px] leading-tight text-emerald-deep sm:text-[28px] lg:text-[34px]">
 
-            Planning Your
-            <br />
-
-            <span className="text-brass-gradient">
-              Dream Interior?
-            </span>
+            Planning Your Dream Interior?
 
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-ink/65 sm:text-[15px] sm:leading-7">
+          <p className="mx-auto mt-3 max-w-xl text-[13px] leading-6 text-ink/60 sm:text-sm">
 
-            Whether you're planning a complete home interior, a luxury
-            modular kitchen, or renovating a single room, here are the
-            answers to the questions our clients ask before beginning
-            their journey with
-
+            Everything you need to know before starting your
+            interior journey with
             <span className="font-semibold text-emerald-deep">
               {" "}Lavish Living.
             </span>
@@ -78,9 +70,9 @@ export default function FAQ() {
 
         </div>
 
-        {/* FAQ Cards */}
+        {/* FAQ */}
 
-        <div className="mx-auto max-w-3xl space-y-3 lg:max-w-4xl">
+        <div className="mx-auto max-w-3xl space-y-2 sm:space-y-3">
 
           {faqs.map((faq, index) => {
 
@@ -90,43 +82,56 @@ export default function FAQ() {
 
               <div
                 key={index}
-                className={`overflow-hidden rounded-xl sm:rounded-2xl border transition-all duration-300 ${
+                className={`overflow-hidden rounded-xl border transition-all duration-300 ${
                   open
-                    ? "border-brass/40 bg-white shadow-luxe"
-                    : "border-emerald/10 bg-white shadow-soft hover:border-brass/20 hover:shadow-md"
+                    ? "border-brass/30 bg-white shadow-lg"
+                    : "border-emerald/10 bg-white hover:border-brass/20 hover:shadow-md"
                 }`}
               >
 
                 <button
-                  onClick={() => setActive(open ? -1 : index)}
-                  className="flex w-full items-center justify-between px-4 py-4 text-left sm:px-6 sm:py-5 lg:px-6 lg:py-5"
+                  onClick={() =>
+                    setActive(open ? -1 : index)
+                  }
+                  className="flex w-full items-center gap-3 px-3 py-3 text-left sm:px-5 sm:py-4"
                 >
 
-                  <h3 className="pr-4 font-display text-base leading-6 text-emerald-deep sm:text-lg lg:text-[20px]">
+                  {/* Accent */}
+
+                  <span
+                    className={`h-8 w-1 rounded-full transition-all ${
+                      open
+                        ? "bg-brass"
+                        : "bg-emerald/20"
+                    }`}
+                  />
+
+                  {/* Question */}
+
+                  <h3 className="flex-1 font-display text-[14px] leading-5 text-emerald-deep sm:text-[15px] lg:text-base">
 
                     {faq.question}
 
                   </h3>
 
+                  {/* Arrow */}
+
                   <div
-                    className={`grid h-8 w-8 flex-shrink-0 place-items-center rounded-full transition-all duration-300 sm:h-9 sm:w-9 ${
+                    className={`flex h-7 w-7 items-center justify-center rounded-full transition-all duration-300 ${
                       open
-                        ? "bg-brass text-emerald-deep rotate-180"
-                        : "bg-emerald-deep/5 text-emerald-deep"
+                        ? "rotate-180 bg-brass text-emerald-deep"
+                        : "bg-cream text-emerald-deep"
                     }`}
                   >
 
-                    <ChevronDown
-                      size={16}
-                      className="sm:h-[18px] sm:w-[18px]"
-                    />
+                    <ChevronDown size={14} />
 
                   </div>
 
                 </button>
 
                 <div
-                  className={`grid transition-all duration-500 ease-in-out ${
+                  className={`grid transition-all duration-300 ${
                     open
                       ? "grid-rows-[1fr]"
                       : "grid-rows-[0fr]"
@@ -135,9 +140,19 @@ export default function FAQ() {
 
                   <div className="overflow-hidden">
 
-                    <p className="px-4 pb-4 text-sm leading-6 text-ink/70 sm:px-6 sm:pb-5 sm:text-[15px] sm:leading-7 lg:px-6 lg:pb-6 lg:text-base lg:leading-7">
-                     {faq.answer}
-                    </p>
+                                        <div className="px-3 pb-3 sm:px-5 sm:pb-4">
+
+                      <div className="ml-4 rounded-lg border border-brass/10 bg-cream/40 p-3 sm:ml-5 sm:p-4">
+
+                        <p className="text-[12px] leading-6 text-ink/65 sm:text-[13px] sm:leading-6 lg:text-sm">
+
+                          {faq.answer}
+
+                        </p>
+
+                      </div>
+
+                    </div>
 
                   </div>
 
