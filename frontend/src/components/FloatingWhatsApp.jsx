@@ -22,42 +22,33 @@ export default function FloatingWhatsApp() {
   }, []);
 
   return (
-    <div
-      className="fixed bottom-6 right-5 z-[9999] flex items-end gap-3"
-      onMouseEnter={() => setShowCard(true)}
-      onMouseLeave={() => setShowCard(false)}
-    >
+    <div className="fixed bottom-3 right-3 z-[9999] flex items-end gap-2 md:bottom-5 md:right-5">
+
       {/* Floating Card */}
 
       <div
         className={`
-        hidden md:block
-        transition-all duration-500
-        ${
-          showCard
-            ? "translate-x-0 opacity-100"
-            : "translate-x-10 opacity-0 pointer-events-none"
-        }
-      `}
+          hidden md:block
+          transition-all duration-300 ease-out
+          ${
+            showCard
+              ? "translate-x-0 opacity-100"
+              : "translate-x-4 opacity-0 pointer-events-none"
+          }
+        `}
       >
-        <div className="rounded-2xl border border-emerald-100 bg-white/95 px-5 py-4 shadow-2xl backdrop-blur-md">
+        <div className="rounded-xl border border-emerald-100 bg-white/95 px-3 py-2 shadow-xl backdrop-blur-md">
 
-          <p className="text-lg font-semibold text-emerald-deep">
-
+          <p className="text-sm font-semibold text-emerald-deep">
             👋 Welcome!
-
           </p>
 
-          <p className="mt-1 text-sm text-gray-500">
-
+          <p className="mt-0.5 text-xs leading-5 text-gray-500">
             Need help designing your dream home?
-
           </p>
 
-          <p className="mt-1 text-xs text-brass">
-
+          <p className="mt-0.5 text-[10px] text-brass">
             Typically replies instantly
-
           </p>
 
         </div>
@@ -70,29 +61,31 @@ export default function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp"
+        onMouseEnter={() => setShowCard(true)}
+        onMouseLeave={() => setShowCard(false)}
         className="
-        relative
-        flex
-        h-16
-        w-16
-        items-center
-        justify-center
-        rounded-full
-        bg-[#25D366]
-        shadow-2xl
-        transition-all
-        duration-300
-        hover:scale-110
-      "
+          relative
+          flex
+          h-11
+          w-11
+          items-center
+          justify-center
+          rounded-full
+          bg-[#25D366]
+          shadow-xl
+          transition-all
+          duration-300
+          hover:scale-110
+          md:h-14
+          md:w-14
+        "
       >
         {/* Pulse */}
 
         <span className="absolute h-full w-full animate-ping rounded-full bg-[#25D366] opacity-20"></span>
 
-        <FaWhatsapp
-          size={38}
-          className="relative text-white"
-        />
+        <FaWhatsapp className="relative text-[22px] text-white md:text-[30px]" />
+
       </a>
     </div>
   );
