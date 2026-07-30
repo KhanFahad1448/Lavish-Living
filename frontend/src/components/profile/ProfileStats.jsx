@@ -17,36 +17,53 @@ export default function ProfileStats({
       title: "Total Enquiries",
       value: totalEnquiries,
       icon: ClipboardList,
-      accent: "from-emerald to-emerald-deep",
-      bg: "bg-emerald/5",
+      subtitle: "Design consultations",
     },
     {
       title: "Running Projects",
       value: activeProjects,
       icon: Home,
-      accent: "from-sky-500 to-blue-700",
-      bg: "bg-blue-50",
+      subtitle: "Currently in progress",
     },
     {
       title: "Quotations",
       value: quotations,
       icon: FileText,
-      accent: "from-amber-400 to-yellow-600",
-      bg: "bg-yellow-50",
+      subtitle: "Price estimates shared",
     },
     {
       title: "Reviews",
       value: reviews,
       icon: Star,
-      accent: "from-purple-500 to-fuchsia-600",
-      bg: "bg-purple-50",
+      subtitle: "Feedback submitted",
     },
   ];
 
   return (
-    <section className="mt-10">
+    <section className="mt-8 sm:mt-10">
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {/* Heading */}
+
+      <div className="mb-6 sm:mb-8">
+
+        <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-brass">
+          Overview
+        </p>
+
+        <h2 className="mt-2 font-display text-2xl sm:text-3xl text-emerald-deep">
+          Your Journey At A Glance
+        </h2>
+
+        <p className="mt-2 max-w-2xl text-sm sm:text-[15px] leading-6 sm:leading-7 text-ink/60">
+          Track every milestone of your interior journey with Lavish Living,
+          from your first consultation to completed dream spaces.
+        </p>
+
+      </div>
+
+      {/* Cards */}
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
 
         {cards.map((card) => {
           const Icon = card.icon;
@@ -54,52 +71,68 @@ export default function ProfileStats({
           return (
             <div
               key={card.title}
-              className="group relative overflow-hidden rounded-[28px] border border-emerald/10 bg-white p-7 shadow-soft transition duration-500 hover:-translate-y-2 hover:shadow-luxe"
+              className="group overflow-hidden rounded-2xl sm:rounded-3xl border border-emerald/10 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-luxe"
             >
-              {/* Decorative Blur */}
 
-              <div
-                className={`absolute -right-8 -top-8 h-32 w-32 rounded-full ${card.bg} blur-3xl transition duration-500 group-hover:scale-125`}
-              />
+              {/* Brass Accent */}
 
-              <div className="relative">
+              <div className="h-1 w-full bg-gradient-to-r from-brass via-[#d4b06b] to-brass" />
 
-                {/* Icon */}
+              <div className="p-3 sm:p-5 lg:p-6">
 
-                <div
-                  className={`mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${card.accent} text-white shadow-lg`}
-                >
-                  <Icon size={28} />
+                {/* Top */}
+
+                <div className="flex items-center justify-between">
+
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-luxe text-brass">
+
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+
+                  </div>
+
+                  <ArrowUpRight
+                    className="h-4 w-4 sm:h-5 sm:w-5 text-brass transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
+
                 </div>
+
+                {/* Value */}
+
+                <h3 className="mt-4 sm:mt-6 font-display text-2xl sm:text-3xl lg:text-4xl text-emerald-deep">
+
+                  {card.value}
+
+                </h3>
 
                 {/* Title */}
 
-                <p className="text-sm uppercase tracking-[0.18em] text-ink/45">
+                <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45 leading-4">
 
                   {card.title}
 
                 </p>
 
-                {/* Number */}
+                {/* Subtitle */}
 
-                <h2 className="mt-4 font-display text-5xl text-emerald-deep">
+                <p className="mt-2 hidden sm:block text-sm leading-6 text-ink/60">
 
-                  {card.value}
+                  {card.subtitle}
 
-                </h2>
+                </p>
 
-                {/* Bottom */}
+                {/* Footer */}
 
-                <div className="mt-8 flex items-center justify-between">
+                <div className="mt-4 sm:mt-6 flex items-center gap-2">
 
-                  <span className="text-sm text-ink/55">
-                    Updated just now
+                  <span className="h-2 w-2 rounded-full bg-emerald" />
+
+                  <span className="hidden lg:inline text-xs text-ink/45">
+                    Updated from your latest activity
                   </span>
 
-                  <ArrowUpRight
-                    size={18}
-                    className="text-brass transition group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
+                  <span className="text-[10px] text-ink/45 lg:hidden">
+                    Updated
+                  </span>
 
                 </div>
 

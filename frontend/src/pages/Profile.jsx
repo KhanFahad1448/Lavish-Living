@@ -5,7 +5,9 @@ import { api } from "../lib/api";
 
 import ProfileHero from "../components/profile/ProfileHero";
 import ProfileStats from "../components/profile/ProfileStats";
-import ProfileInformation from "../components/profile/ProfileInformation";
+import RecentActivity from "../components/profile/RecentActivity";
+import SecurityCard from "../components/profile/SecurityCard";
+import PersonalInformation from "../components/profile/PersonalInformation";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -57,7 +59,7 @@ export default function Profile() {
             reviews={0}
           />
 
-          <ProfileInformation
+          <PersonalInformation
             user={user}
             onEdit={() => {}}
           />

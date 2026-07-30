@@ -6,150 +6,180 @@ import {
   CalendarDays,
   ShieldCheck,
   Pencil,
+  ChevronRight,
 } from "lucide-react";
 
-export default function ProfileInformation({
+export default function PersonalInformation({
   user,
   onEdit,
 }) {
+  const cards = [
+    {
+      icon: User,
+      title: "Full Name",
+      value: user?.name || "Not Available",
+    },
+    {
+      icon: Mail,
+      title: "Email Address",
+      value: user?.email || "Not Available",
+    },
+    {
+      icon: Phone,
+      title: "Phone Number",
+      value: user?.phone || "Not Added",
+    },
+    {
+      icon: MapPin,
+      title: "Location",
+      value: user?.location || "Not Added",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Account Type",
+      value:
+        user?.role === "admin"
+          ? "Administrator"
+          : "Premium Client",
+    },
+    {
+      icon: CalendarDays,
+      title: "Member Since",
+      value: user?.createdAt
+        ? new Date(user.createdAt).toLocaleDateString(
+            "en-IN",
+            {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }
+          )
+        : "-",
+    },
+  ];
+
   return (
-    <section className="mt-12">
+    <section className="mt-8 sm:mt-10">
 
-      <div className="mb-8">
+      {/* Heading */}
 
-        <p className="text-xs uppercase tracking-[0.25em] text-brass">
-          Personal Details
-        </p>
+      <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
 
-        <h2 className="mt-2 font-display text-4xl text-emerald-deep">
-          Profile Information
-        </h2>
+        <div>
 
-        <p className="mt-2 max-w-2xl text-ink/60">
-          Manage your personal information and keep your account
-          details updated for a smoother design experience.
-        </p>
+          <p className="text-[10px] uppercase tracking-[0.22em] text-brass sm:text-xs">
+            PERSONAL INFORMATION
+          </p>
+
+          <h2 className="mt-2 font-display text-2xl text-emerald-deep sm:text-3xl">
+            Client Information
+          </h2>
+
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-ink/60 sm:text-[15px] sm:leading-7">
+            Your personal information used for quotations,
+            project updates and communication throughout
+            your Lavish Living journey.
+          </p>
+
+        </div>
+
+        <button
+          onClick={onEdit}
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-brass bg-gradient-luxe px-5 py-3 text-sm font-semibold text-brass transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+        >
+
+          <Pencil size={16} />
+
+          Edit Profile
+
+        </button>
 
       </div>
 
-      <div className="overflow-hidden rounded-[32px] border border-emerald/10 bg-white shadow-soft">
+      {/* Cards */}
 
-        {/* Header */}
+      <div className="grid gap-4 sm:grid-cols-2">
 
-        <div className="flex flex-col items-start justify-between gap-6 border-b border-emerald/10 bg-gradient-to-r from-emerald-deep to-emerald px-8 py-7 md:flex-row md:items-center">
+        {cards.map((card, index) => {
+          const Icon = card.icon;
 
-          <div>
-
-            <h3 className="font-display text-3xl text-ivory">
-              Client Profile
-            </h3>
-
-            <p className="mt-2 text-sm text-ivory/80">
-              Your account information used across Lavish Living.
-            </p>
-
-          </div>
-
-          <button
-            onClick={onEdit}
-            className="inline-flex items-center gap-2 rounded-full bg-brass px-5 py-3 text-sm font-semibold text-emerald-deep transition hover:scale-105"
-          >
-            <Pencil size={16} />
-            Edit Profile
-          </button>
-
-        </div>
-
-        {/* Body */}
-
-        <div className="grid gap-6 p-8 md:grid-cols-2">
-
-          <InfoCard
-            icon={User}
-            label="Full Name"
-            value={user?.name || "Not Available"}
-          />
-
-          <InfoCard
-            icon={Mail}
-            label="Email Address"
-            value={user?.email || "Not Available"}
-          />
-
-          <InfoCard
-            icon={Phone}
-            label="Phone Number"
-            value={user?.phone || "Not Added"}
-          />
-
-          <InfoCard
-            icon={MapPin}
-            label="Location"
-            value={user?.location || "Not Added"}
-          />
-
-          <InfoCard
-            icon={ShieldCheck}
-            label="Account Type"
-            value={
-              user?.role === "admin"
-                ? "Administrator"
-                : "Client"
-            }
-          />
-
-          <InfoCard
-            icon={CalendarDays}
-            label="Member Since"
-            value={
-              user?.createdAt
-                ? new Date(user.createdAt).toLocaleDateString(
-                    "en-IN",
-                    {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    }
-                  )
-                : "-"
-            }
-          />
-
-        </div>
+          return (
+            <InfoCard
+              key={index}
+              icon={Icon}
+              title={card.title}
+              value={card.value}
+            />
+          );
+        })}
 
       </div>
 
     </section>
   );
-}
+  }
 
 function InfoCard({
   icon: Icon,
-  label,
+  title,
   value,
 }) {
   return (
-    <div className="group rounded-2xl border border-emerald/10 bg-cream/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-brass/40 hover:bg-white hover:shadow-soft">
+    <div className="group relative overflow-hidden rounded-2xl border border-emerald/10 bg-white p-4 sm:p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brass/40 hover:shadow-luxe">
 
-      <div className="flex items-center gap-4">
+      {/* Decorative Background */}
 
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-luxe text-brass transition group-hover:scale-110">
+      <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brass/5 blur-3xl transition duration-500 group-hover:scale-125" />
 
-          <Icon size={22} />
+      <div className="relative flex items-center justify-between">
+
+        {/* Left */}
+
+        <div className="flex items-center gap-4 min-w-0">
+
+          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-luxe text-brass shadow-sm transition duration-300 group-hover:scale-110">
+
+            <Icon className="h-5 w-5" />
+
+          </div>
+
+          <div className="min-w-0">
+
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
+
+              {title}
+
+            </p>
+
+            <h3 className="mt-1 truncate text-sm sm:text-base font-semibold text-emerald-deep">
+
+              {value}
+
+            </h3>
+
+          </div>
 
         </div>
 
-        <div>
+        {/* Right */}
 
-          <p className="text-xs uppercase tracking-[0.18em] text-ink/45">
-            {label}
-          </p>
+        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-cream transition duration-300 group-hover:bg-brass group-hover:text-white">
 
-          <h4 className="mt-1 text-lg font-semibold text-emerald-deep">
-            {value}
-          </h4>
+          <ChevronRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" />
 
         </div>
+
+      </div>
+
+      {/* Bottom Accent */}
+
+      <div className="mt-5 flex items-center justify-between border-t border-emerald/10 pt-3">
+
+        <span className="text-[11px] text-ink/45">
+          Verified Information
+        </span>
+
+        <span className="h-2 w-2 rounded-full bg-emerald"></span>
 
       </div>
 
