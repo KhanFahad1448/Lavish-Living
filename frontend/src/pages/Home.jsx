@@ -247,63 +247,116 @@ export default function Home() {
     </section>
 
       {/* SERVICES */}
-      <section className="section-pad bg-cream">
-        <div className="container-luxe">
-          <div className="mb-12 max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.2em] text-brass">What we do</p>
-            <h2 className="mt-2 font-display text-4xl text-emerald-deep">Every room, one studio.</h2>
-            <p className="mt-3 text-ink/70">From the first sketch to the last screw — modular kitchens, wardrobes, ceilings, full-home — handled by one team you can call.</p>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {serviceData.map((service) => {
 
-  const Icon = service.icon;
+<section className="bg-cream py-8 sm:py-10 md:py-16">
+  <div className="container-luxe">
 
-  return (
+    <div className="mb-6 max-w-2xl sm:mb-8 md:mb-12">
+      <p className="text-[9px] uppercase tracking-[0.2em] text-brass sm:text-xs">What we do</p>
+      <h2 className="mt-2 font-display text-xl font-semibold tracking-tight text-emerald-deep sm:text-2xl md:text-3xl lg:text-4xl">Every room, one studio.</h2>
+      <p className="mt-2 text-xs leading-5 text-ink/70 sm:mt-3 sm:text-sm md:text-base">From the first sketch to the last screw — modular kitchens, wardrobes, ceilings, full-home — handled by one team you can call.</p>
+    </div>
 
-    <button
-      key={service.slug}
-      onClick={() => setSelectedService(service)}
-      className="group rounded-2xl border border-emerald/10 bg-ivory p-7 text-left shadow-soft transition hover:-translate-y-2 hover:shadow-luxe"
-    >
+    {/* ========================================= */}
+    {/* Icon constellation (desktop) */}
+    {/* ========================================= */}
 
-      <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-gradient-luxe text-brass">
+    <div className="hidden md:block">
 
-        <Icon className="h-5 w-5"/>
+      <div className="flex flex-wrap items-start justify-center gap-x-8 gap-y-10 lg:gap-x-12">
+
+        {serviceData.map((service, i) => {
+          const Icon = service.icon;
+          const big = i % 3 === 1;
+
+          return (
+            <button
+              key={service.slug}
+              onClick={() => setSelectedService(service)}
+              className={`group flex flex-col items-center ${
+                big ? "mt-0" : "mt-10"
+              }`}
+            >
+              <span
+                className={`relative grid place-items-center bg-gradient-luxe text-brass shadow-luxe transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-[0_25px_60px_-10px_rgba(200,165,96,0.45)] ${
+                  big ? "h-28 w-28 lg:h-32 lg:w-32" : "h-20 w-20 lg:h-24 lg:w-24"
+                }`}
+                style={{
+                  clipPath:
+                    "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
+                }}
+              >
+                <span className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{
+                  clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
+                  background: "radial-gradient(circle at 50% 30%, rgba(227,201,138,0.35), transparent 70%)",
+                }} />
+
+                <Icon
+                  className={`relative transition-transform duration-500 group-hover:scale-110 ${
+                    big ? "h-11 w-11 lg:h-12 lg:w-12" : "h-8 w-8 lg:h-9 lg:w-9"
+                  }`}
+                  strokeWidth={1.5}
+                />
+              </span>
+
+              <span className="mt-4 text-[11px] font-medium uppercase tracking-[0.16em] text-ink/60 transition-colors duration-300 group-hover:text-brass lg:text-xs">
+                {service.title}
+              </span>
+            </button>
+          );
+        })}
 
       </div>
 
-      <h3 className="font-display text-xl text-emerald-deep">
+    </div>
 
-        {service.title}
+    {/* ========================================= */}
+    {/* Zigzag timeline (mobile) */}
+    {/* ========================================= */}
 
-      </h3>
+    <div className="md:hidden">
 
-      <p className="mt-2 text-sm text-ink/70">
+      <div className="relative">
 
-        {service.shortDescription}
+        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-brass/25 to-transparent" />
 
-      </p>
+        <div className="relative flex flex-col gap-1">
 
-      <span className="mt-5 inline-flex items-center gap-2 font-semibold text-brass">
+          {serviceData.map((service, i) => {
+            const Icon = service.icon;
+            const left = i % 2 === 0;
 
-        View Designs
+            return (
+              <button
+                key={service.slug}
+                onClick={() => setSelectedService(service)}
+                className={`flex items-center gap-3 py-3 ${
+                  left ? "flex-row" : "flex-row-reverse text-right"
+                }`}
+              >
+                <span className="relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-luxe text-brass shadow-md transition-transform duration-300 active:scale-95">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </span>
 
-        <ArrowRight
-          size={16}
-          className="transition group-hover:translate-x-1"
-        />
+                <span
+                  className={`flex-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-emerald-deep ${
+                    left ? "text-left" : "text-right"
+                  }`}
+                >
+                  {service.title}
+                </span>
+              </button>
+            );
+          })}
 
-      </span>
-
-    </button>
-
-  );
-
-})}
-          </div>
         </div>
-      </section>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* PORTFOLIO */}
       <section className="section-pad">
