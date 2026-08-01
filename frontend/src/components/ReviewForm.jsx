@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import {
   Loader2,
-  Upload,
+  Camera,
   Star,
-  ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
 import { api } from "../lib/api";
 
@@ -13,6 +13,8 @@ export default function ReviewForm() {
   const [busy, setBusy] = useState(false);
   const [preview, setPreview] = useState("");
   const [rating, setRating] = useState(5);
+  const [hoverRating, setHoverRating] = useState(0);
+  const fileRef = useRef(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -23,319 +25,172 @@ export default function ReviewForm() {
 
   function handleChange(e) {
     const { name, value } = e.target;
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleImage(e) {
     const file = e.target.files?.[0];
-
     if (!file) return;
-
-    setForm((prev) => ({
-      ...prev,
-      image: file,
-    }));
-
+    setForm((prev) => ({ ...prev, image: file }));
     setPreview(URL.createObjectURL(file));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     setBusy(true);
 
     try {
-
       const fd = new FormData();
-
       fd.append("name", form.name);
       fd.append("location", form.location);
       fd.append("rating", rating);
       fd.append("review", form.review);
-
-      if (form.image) {
-        fd.append("image", form.image);
-      }
+      if (form.image) fd.append("image", form.image);
 
       await api.post("/reviews", fd);
 
       toast.success("Thank you! Review submitted.");
 
-      setForm({
-        name: "",
-        location: "",
-        review: "",
-        image: null,
-      });
-
+      setForm({ name: "", location: "", review: "", image: null });
       setRating(5);
       setPreview("");
 
     } catch (err) {
-
       toast.error(
-        err.response?.data?.message ||
-        "Unable to submit review."
+        err.response?.data?.message || "Unable to submit review."
       );
-
     } finally {
-
       setBusy(false);
-
     }
   }
 
   return (
 
-    <section className="mx-auto mt-4 w-full max-w-md sm:max-w-lg">
+    <section className="mx-auto w-full max-w-xs sm:max-w-sm">
 
-      <div className="overflow-hidden rounded-l border border-emerald/10 bg-white shadow-soft">
+      <form
+        onSubmit={handleSubmit}
+        className="rounded-[28px] border border-emerald/10 bg-white p-4 shadow-soft transition-shadow duration-300 focus-within:shadow-luxe sm:p-5"
+      >
 
-        {/* Header */}
+        {/* Eyebrow + rating */}
 
-        <div className="border-b border-emerald/10 bg-gradient-to-b from-white via-cream/40 to-white px-4 py-4 sm:px-5 sm:py-5">
+        <div className="flex items-center justify-between">
 
-          <p className="text-[9px] uppercase tracking-[0.28em] text-brass">
-
-            CUSTOMER REVIEW
-
+          <p className="text-[8px] uppercase tracking-[0.22em] text-brass sm:text-[9px] sm:tracking-[0.28em]">
+            Share Your Story
           </p>
 
-          <h2 className="mt-1 font-display text-xl sm:text-2xl text-emerald-deep">
-
-            Share Your Experience
-
-          </h2>
-
-          <p className="mt-1 max-w-sm text-[11px] sm:text-xs leading-5 text-ink/55">
-
-            Tell future homeowners about your Lavish Living journey.
-
-          </p>
+          <div
+            className="flex gap-0.5"
+            onMouseLeave={() => setHoverRating(0)}
+          >
+            {[1,2,3,4,5].map((star) => (
+              <button
+                key={star}
+                type="button"
+                onClick={() => setRating(star)}
+                onMouseEnter={() => setHoverRating(star)}
+                className="transition hover:scale-110"
+              >
+                <Star
+                  className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${
+                    star <= (hoverRating || rating)
+                      ? "fill-brass text-brass"
+                      : "text-gray-300"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
 
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4 px-4 py-4 sm:px-5 sm:py-5"
-        >
+        {/* Avatar + name/location row */}
 
-          {/* Rating */}
+        <div className="mt-3 flex items-center gap-3 sm:mt-4">
 
-          <div className="text-center">
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            className="group relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-dashed border-brass/40 bg-brass/5 transition hover:border-brass sm:h-12 sm:w-12"
+          >
+            {preview ? (
+              <img src={preview} alt="You" className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center text-brass/50 group-hover:text-brass">
+                <Camera size={16} />
+              </div>
+            )}
 
-            <p className="mb-2 text-[9px] uppercase tracking-[0.25em] text-ink/45">
+            <input
+              ref={fileRef}
+              hidden
+              type="file"
+              accept="image/*"
+              onChange={handleImage}
+            />
+          </button>
 
-              Rating
+          <div className="min-w-0 flex-1 space-y-1">
 
-            </p>
-
-            <div className="flex justify-center gap-1">
-
-              {[1,2,3,4,5].map((star)=>(
-
-                <button
-                  key={star}
-                  type="button"
-                  onClick={()=>setRating(star)}
-                  className="transition hover:scale-110"
-                >
-
-                  <Star
-                    className={`h-4 w-4 sm:h-5 sm:w-5 ${
-                      star <= rating
-                        ? "fill-brass text-brass"
-                        : "text-gray-300"
-                    }`}
-                  />
-
-                </button>
-
-              ))}
-
-            </div>
-
-          </div>
-
-          {/* Name + Location */}
-
-          <div className="grid gap-4 sm:grid-cols-2">
-
-            <div>
-
-              <input
-                required
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Full Name"
-                className="w-full border-0 border-b border-emerald/15 bg-transparent px-0 py-2 text-sm placeholder:text-ink/35 focus:border-brass focus:outline-none focus:ring-0"
-              />
-
-            </div>
-
-            <div>
-
-              <input
-                required
-                name="location"
-                value={form.location}
-                onChange={handleChange}
-                placeholder="Location"
-                className="w-full border-0 border-b border-emerald/15 bg-transparent px-0 py-2 text-sm placeholder:text-ink/35 focus:border-brass focus:outline-none focus:ring-0"
-              />
-
-            </div>
-
-          </div>
-
-                    {/* Review */}
-
-          <div>
-
-            <textarea
+            <input
               required
-              rows={3}
-              name="review"
-              value={form.review}
+              name="name"
+              value={form.name}
               onChange={handleChange}
-              placeholder="Tell us about your experience with Lavish Living..."
-              className="w-full resize-none rounded-lg border border-emerald/10 bg-cream/30 px-4 py-3 text-sm leading-6 text-emerald-deep placeholder:text-ink/35 transition-all duration-300 focus:border-brass focus:bg-white focus:outline-none"
+              placeholder="Your name"
+              className="w-full border-0 bg-transparent p-0 text-sm font-semibold text-emerald-deep placeholder:font-normal placeholder:text-ink/30 focus:outline-none focus:ring-0 sm:text-[15px]"
+            />
+
+            <input
+              required
+              name="location"
+              value={form.location}
+              onChange={handleChange}
+              placeholder="City"
+              className="w-full border-0 bg-transparent p-0 text-[11px] text-ink/50 placeholder:text-ink/30 focus:outline-none focus:ring-0 sm:text-xs"
             />
 
           </div>
 
-          {/* Compact Upload */}
+        </div>
 
-          <div>
+        {/* Quote-style review textarea */}
 
-            <label className="flex cursor-pointer items-center justify-between rounded-lg border border-emerald/10 bg-white px-4 py-3 transition-all duration-300 hover:border-brass hover:bg-cream/40">
+        <textarea
+          required
+          rows={3}
+          name="review"
+          value={form.review}
+          onChange={handleChange}
+          placeholder="“Working with Lavish Living was…”"
+          className="mt-3 w-full resize-none border-0 bg-transparent p-0 text-xs italic leading-5 text-ink/75 placeholder:text-ink/30 focus:outline-none focus:ring-0 sm:mt-4 sm:text-sm sm:leading-6"
+        />
 
-              <div className="flex items-center gap-3">
+        {/* Footer */}
 
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brass/10">
+        <div className="mt-3 flex items-center justify-between border-t border-emerald/5 pt-3 sm:mt-4">
 
-                  <Upload
-                    size={16}
-                    className="text-brass"
-                  />
-
-                </div>
-
-                <div>
-
-                  <p className="text-sm font-medium text-emerald-deep">
-
-                    Add Photo
-
-                  </p>
-
-                  <p className="text-[11px] text-ink/45">
-
-                    Optional
-
-                  </p>
-
-                </div>
-
-              </div>
-
-              <span className="rounded-full border border-brass/20 bg-brass/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-brass">
-
-                Browse
-
-              </span>
-
-              <input
-                hidden
-                type="file"
-                accept="image/*"
-                onChange={handleImage}
-              />
-
-            </label>
-
-            {preview && (
-
-              <div className="mt-3 flex items-center gap-3 rounded-2xl border border-emerald/10 bg-cream/20 p-2.5">
-
-                <img
-                  src={preview}
-                  alt="Preview"
-                  className="h-12 w-12 rounded-xl object-cover"
-                />
-
-                <div>
-
-                  <p className="text-xs font-semibold text-emerald-deep">
-
-                    Photo Selected
-
-                  </p>
-
-                  <p className="text-[11px] text-ink/45">
-
-                    Ready to upload
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            )}
-
-          </div>
-
-          {/* Premium Submit */}
-
-          <div className="pt-1 flex justify-center">
-
-            <button
-              type="submit"
-              disabled={busy}
-              className="group inline-flex items-center gap-2 rounded-lg bg-emerald-deep px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-emerald hover:shadow-xl disabled:opacity-60"
-            >
-
-              {busy ? (
-
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Sending...
-                </>
-
-              ) : (
-
-                <>
-                  Submit Review
-
-                  <ArrowRight
-                    size={15}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-
-                </>
-
-              )}
-
-            </button>
-
-          </div>
-
-          <p className="text-center text-[10px] leading-5 text-ink/45">
-
-            Reviews are manually verified before being published on
-            Lavish Living.
-
+          <p className="text-[9px] leading-tight text-ink/35 sm:text-[10px]">
+            Verified before<br />publishing
           </p>
 
-        </form>
+          <button
+            type="submit"
+            disabled={busy}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-deep text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-emerald disabled:opacity-60 sm:h-10 sm:w-10"
+          >
+            {busy ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <ArrowUpRight size={16} />
+            )}
+          </button>
 
-      </div>
+        </div>
+
+      </form>
 
     </section>
 

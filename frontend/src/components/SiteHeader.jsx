@@ -50,8 +50,8 @@ export default function SiteHeader() {
               className={({ isActive }) =>
                 `text-sm transition ${
                   isActive
-                    ? "text-emerald"
-                    : "text-ink/70 hover:text-emerald"
+                    ? "text-brass"
+                    : "text-ink/70 hover:text-brass"
                 }`
               }
             >
@@ -63,7 +63,11 @@ export default function SiteHeader() {
           {user?.role === "admin" && (
             <NavLink
               to="/admin"
-              className="text-sm text-brass hover:text-emerald"
+              className={({ isActive }) =>
+                `text-sm transition ${
+                  isActive ? "text-brass" : "text-brass/70 hover:text-brass"
+                }`
+              }
             >
               Admin
             </NavLink>
@@ -74,20 +78,20 @@ export default function SiteHeader() {
             <div className="relative">
               <button
                 onClick={() => setProfileOpen(!profileOpen)}
-                className="flex items-center gap-3 rounded-full border border-emerald/10 bg-white px-3 py-2 shadow-sm transition hover:border-brass hover:shadow-md"
+                className="flex items-center gap-2 rounded-full border border-emerald/10 bg-white px-2 py-1.5 shadow-sm transition hover:border-brass hover:shadow-md"
               >
                 {/* Avatar */}
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-luxe text-sm font-semibold text-brass">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-luxe text-xs font-semibold text-brass">
                   {initials}
                 </div>
 
                 {/* Name */}
-                <div className="text-left">
-                  <p className="text-sm font-semibold text-emerald-deep">
+                <div className="text-left leading-tight">
+                  <p className="text-xs font-semibold text-emerald-deep">
                     {user.name}
                   </p>
 
-                  <p className="text-xs text-ink/50">
+                  <p className="text-[9px] uppercase tracking-[0.15em] text-brass/70">
                     {user.role === "admin"
                       ? "Administrator"
                       : "Client"}
@@ -95,8 +99,8 @@ export default function SiteHeader() {
                 </div>
 
                 <ChevronDown
-                  size={16}
-                  className={`transition ${
+                  size={14}
+                  className={`text-ink/40 transition ${
                     profileOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -104,13 +108,13 @@ export default function SiteHeader() {
 
               {/* Dropdown */}
               {profileOpen && (
-                <div className="absolute right-0 mt-3 w-56 overflow-hidden rounded-2xl border border-emerald/10 bg-white shadow-xl">
+                <div className="absolute right-0 mt-3 w-52 overflow-hidden rounded-2xl border border-emerald/10 bg-white shadow-xl">
 
                   {user.role === "admin" ? (
                     <Link
                       to="/admin"
                       onClick={() => setProfileOpen(false)}
-                      className="block px-5 py-3 text-sm transition hover:bg-cream"
+                      className="block px-4 py-2.5 text-sm text-ink/70 transition hover:bg-cream hover:text-brass"
                     >
                       Dashboard
                     </Link>
@@ -119,7 +123,7 @@ export default function SiteHeader() {
                       <Link
                         to="/profile"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-5 py-3 text-sm transition hover:bg-cream"
+                        className="block px-4 py-2.5 text-sm text-ink/70 transition hover:bg-cream hover:text-brass"
                       >
                         My Profile
                       </Link>
@@ -127,7 +131,7 @@ export default function SiteHeader() {
                       <Link
                         to="/my-enquiries"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-5 py-3 text-sm transition hover:bg-cream"
+                        className="block px-4 py-2.5 text-sm text-ink/70 transition hover:bg-cream hover:text-brass"
                         >
                            My Enquiries
                       </Link>
@@ -141,7 +145,7 @@ export default function SiteHeader() {
                       logout();
                       setProfileOpen(false);
                     }}
-                    className="flex w-full items-center gap-2 px-5 py-3 text-left text-sm text-red-500 transition hover:bg-red-50"
+                    className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-red-500 transition hover:bg-red-50"
                   >
                     <LogOut className="h-4 w-4" />
                     Logout
@@ -169,7 +173,7 @@ export default function SiteHeader() {
       {/* Mobile Navigation */}
       {open && (
         <div className="border-t border-emerald/10 bg-ivory md:hidden">
-          <div className="container-luxe flex flex-col gap-3 py-4">
+          <div className="container-luxe flex flex-col gap-2 py-3">
 
             {nav.map((n) => (
               <NavLink
@@ -178,10 +182,10 @@ export default function SiteHeader() {
                 end={n.to === "/"}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `text-sm ${
+                  `text-sm transition ${
                     isActive
-                      ? "text-emerald"
-                      : "text-ink/70"
+                      ? "text-brass"
+                      : "text-ink/70 hover:text-brass"
                   }`
                 }
               >
@@ -193,7 +197,7 @@ export default function SiteHeader() {
               <Link
                 to="/admin"
                 onClick={() => setOpen(false)}
-                className="text-sm text-brass"
+                className="text-sm text-brass transition hover:text-brass-light"
               >
                 Admin Dashboard
               </Link>
@@ -201,18 +205,18 @@ export default function SiteHeader() {
 
             {/* Mobile User Card */}
             {user && (
-              <div className="mt-3 flex items-center gap-3 rounded-2xl border border-emerald/10 bg-white p-4 shadow-sm">
+              <div className="mt-2 flex items-center gap-2.5 rounded-2xl border border-emerald/10 bg-white p-3 shadow-sm">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-luxe text-lg font-bold text-brass">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-luxe text-xs font-semibold text-brass">
                   {initials}
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-emerald-deep">
+                  <h3 className="text-sm font-semibold text-emerald-deep">
                     {user.name}
                   </h3>
 
-                  <p className="text-xs text-ink/60">
+                  <p className="text-[10px] uppercase tracking-[0.12em] text-brass/70">
                     {user.role === "admin"
                       ? "Administrator"
                       : "Client"}
@@ -221,17 +225,25 @@ export default function SiteHeader() {
               </div>
             )}
 
-
             {user && user.role !== "admin" && (
-             <Link
-              to="/my-enquiries"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-xl border border-emerald/10 bg-white px-4 py-3 text-sm font-medium text-emerald transition hover:border-brass"
-              >
-               My Enquiries
-            </Link>
+              <>
+                <Link
+                  to="/profile"
+                  onClick={() => setOpen(false)}
+                  className="mt-1.5 rounded-xl border border-emerald/10 bg-white px-4 py-2.5 text-sm font-medium text-ink/70 transition hover:border-brass hover:text-brass"
+                >
+                  My Profile
+                </Link>
+
+                <Link
+                  to="/my-enquiries"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl border border-emerald/10 bg-white px-4 py-2.5 text-sm font-medium text-ink/70 transition hover:border-brass hover:text-brass"
+                >
+                  My Enquiries
+                </Link>
+              </>
             )}
-            
 
             {user ? (
               <button
@@ -239,7 +251,7 @@ export default function SiteHeader() {
                   logout();
                   setOpen(false);
                 }}
-                className="mt-2 flex items-center gap-2 text-left text-sm text-red-500"
+                className="mt-1.5 flex items-center gap-2 text-left text-sm text-red-500"
               >
                 <LogOut className="h-4 w-4" />
                 Logout
@@ -248,7 +260,7 @@ export default function SiteHeader() {
               <Link
                 to="/auth"
                 onClick={() => setOpen(false)}
-                className="text-sm text-emerald"
+                className="text-sm text-brass"
               >
                 Sign in
               </Link>
@@ -259,4 +271,3 @@ export default function SiteHeader() {
     </header>
   );
 }
-
