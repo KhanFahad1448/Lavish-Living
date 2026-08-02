@@ -6,6 +6,8 @@ import TrustedBrands from "../components/TrustedBrands";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, ChefHat, BedDouble, Sofa, Lightbulb, DoorOpen, Building2 } from "lucide-react";
+import { Star, MessageCircleHeart, BadgeCheck } from "lucide-react";
+import { Phone, MessageCircle, MapPin, ArrowUpRight } from "lucide-react";
 import InquiryForm from "../components/InquiryForm";
 
 import { useState } from "react";
@@ -359,26 +361,54 @@ export default function Home() {
 </section>
 
       {/* PORTFOLIO */}
-      <section className="section-pad">
-        <div className="container-luxe">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-brass">Proof of work</p>
-              <h2 className="mt-2 font-display text-4xl text-emerald-deep">Recent projects across Ranchi.</h2>
-            </div>
-            <Link to="/portfolio" className="btn-outline">View full portfolio <ArrowRight className="h-4 w-4" /></Link>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {portfolio.map((p, i) => (
-              <div key={i} className={`group relative overflow-hidden rounded-2xl ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}>
-                <img src={p.img} alt={p.tag} className={`h-full w-full object-cover transition duration-700 group-hover:scale-105 ${i === 0 ? "aspect-[4/3]" : "aspect-[4/3]"}`} loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/80 via-emerald-deep/10 to-transparent" />
-                <span className="absolute bottom-4 left-4 rounded-full bg-brass px-3 py-1 text-xs font-medium text-emerald-deep">{p.tag}</span>
-              </div>
-            ))}
-          </div>
+<section className="section-pad">
+  <div className="container-luxe">
+    <div className="mb-6 flex flex-wrap items-end justify-between gap-4 sm:mb-8 md:mb-12">
+      <div>
+        <p className="text-[9px] uppercase tracking-[0.2em] text-brass sm:text-xs">Proof of work</p>
+        <h2 className="mt-2 font-display text-xl font-semibold tracking-tight text-emerald-deep sm:text-2xl md:text-4xl">Recent projects across Ranchi.</h2>
+      </div>
+      <Link to="/portfolio" className="btn-outline">View full portfolio <ArrowRight className="h-4 w-4" /></Link>
+    </div>
+
+    {/* Desktop bento grid */}
+
+    <div className="hidden md:grid md:grid-cols-3 md:gap-4">
+      {portfolio.map((p, i) => (
+        <div key={i} className={`group relative overflow-hidden rounded-2xl ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}>
+          <img src={p.img} alt={p.tag} className={`h-full w-full object-cover transition duration-700 group-hover:scale-105 ${i === 0 ? "aspect-[4/3]" : "aspect-[4/3]"}`} loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/80 via-emerald-deep/10 to-transparent" />
+          <span className="absolute bottom-4 left-4 rounded-full bg-brass px-3 py-1 text-xs font-medium text-emerald-deep">{p.tag}</span>
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Mobile grid — large, clearly visible images */}
+
+    <div className="grid grid-cols-2 gap-3 md:hidden">
+      {portfolio.map((p, i) => (
+        <div
+          key={i}
+          className={`group relative overflow-hidden rounded-2xl shadow-soft ${
+            i === 0 ? "col-span-2 aspect-[16/10]" : "aspect-square"
+          }`}
+        >
+          <img
+            src={p.img}
+            alt={p.tag}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep/75 via-emerald-deep/5 to-transparent" />
+          <span className="absolute bottom-2.5 left-2.5 rounded-full bg-brass px-2.5 py-1 text-[10px] font-medium text-emerald-deep">
+            {p.tag}
+          </span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
 
        {/* Testimonials */}
 
@@ -393,56 +423,54 @@ export default function Home() {
 
       <div>
 
-         <p className="text-xs uppercase tracking-[0.2em] text-brass">
-          Share Your Experience
-        </p>
+  <p className="text-[9px] uppercase tracking-[0.18em] text-brass sm:text-[10px] sm:tracking-[0.24em]">
+    Share Your Experience
+  </p>
 
-        <h2 className="mt-3 font-display text-5xl text-emerald-deep">
-          Every beautiful home deserves a story.
-        </h2>
+  <h2 className="mt-1.5 font-display text-lg font-semibold leading-tight tracking-tight text-emerald-deep sm:mt-2 sm:text-xl md:text-2xl lg:text-4xl">
+    Every beautiful home deserves a story.
+  </h2>
 
-        <p className="mt-6 max-w-lg text-lg leading-8 text-ink/70">
-          If Lavish Living transformed your space, we'd love to hear about
-          your experience. Your review helps future homeowners make
-          confident decisions.
-       </p>
+  <p className="mt-2 max-w-lg text-xs leading-5 text-ink/70 sm:mt-3 sm:text-sm sm:leading-6 lg:text-base lg:leading-7">
+    If Lavish Living transformed your space, we'd love to hear about
+    your experience. Your review helps future homeowners make
+    confident decisions.
+  </p>
 
-      <div className="mt-10 space-y-4">
+  {/* Trust chips */}
 
-        <div className="flex items-center gap-3">
+  <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3">
 
-          <span className="text-brass">★★★★★</span>
-
-          <span className="text-sm text-ink/70">
-            Trusted by families across Ranchi
-          </span>
-
-        </div>
-
-        <div className="flex items-center gap-3">
-
-          <span className="text-brass">✓</span>
-
-          <span className="text-sm text-ink/70">
-            Genuine customer experiences
-          </span>
-
-        </div>
-
-        <div className="flex items-center gap-3">
-
-          <span className="text-brass">✓</span>
-
-          <span className="text-sm text-ink/70">
-            Every review is verified before publishing
-          </span>
-
-        </div>
-
+    <div className="rounded-xl border border-emerald/10 bg-white p-2.5 text-center shadow-sm sm:rounded-2xl sm:p-3.5">
+      <div className="mx-auto grid h-7 w-7 place-items-center rounded-full bg-brass/10 sm:h-9 sm:w-9">
+        <Star size={13} className="fill-brass text-brass sm:size-4" />
       </div>
-
+      <p className="mt-1.5 text-[9px] font-medium leading-tight text-ink/65 sm:mt-2 sm:text-[11px]">
+        Trusted by families
+      </p>
     </div>
 
+    <div className="rounded-xl border border-emerald/10 bg-white p-2.5 text-center shadow-sm sm:rounded-2xl sm:p-3.5">
+      <div className="mx-auto grid h-7 w-7 place-items-center rounded-full bg-brass/10 sm:h-9 sm:w-9">
+        <MessageCircleHeart size={13} className="text-brass sm:size-4" />
+      </div>
+      <p className="mt-1.5 text-[9px] font-medium leading-tight text-ink/65 sm:mt-2 sm:text-[11px]">
+        Genuine experiences
+      </p>
+    </div>
+
+    <div className="rounded-xl border border-emerald/10 bg-white p-2.5 text-center shadow-sm sm:rounded-2xl sm:p-3.5">
+      <div className="mx-auto grid h-7 w-7 place-items-center rounded-full bg-brass/10 sm:h-9 sm:w-9">
+        <BadgeCheck size={13} className="text-brass sm:size-4" />
+      </div>
+      <p className="mt-1.5 text-[9px] font-medium leading-tight text-ink/65 sm:mt-2 sm:text-[11px]">
+        Verified before publishing
+      </p>
+    </div>
+
+  </div>
+
+</div>
     <div className="rounded-3xl bg-white p-8 shadow-luxe">
 
       <ReviewForm />
@@ -453,18 +481,118 @@ export default function Home() {
    </section>
 
   
-      {/* CTA */}
-      <section className="section-pad bg-gradient-luxe text-ivory">
-        <div className="container-luxe grid items-center gap-10 md:grid-cols-2">
-          <div>
-            <h2 className="font-display text-4xl">Ready to start your space?</h2>
-            <p className="mt-3 text-ivory/80">Visit our studio at Khan Complex, Bariatu Road, Ranchi — or send your details and we'll come to you.</p>
-          </div>
-          {/* <div className="rounded-2xl bg-ivory p-6 text-ink shadow-luxe md:p-8">
-            <InquiryForm />
-          </div> */}
-        </div> 
-      </section>
+{/* ========================================= */}
+{/* CTA — Editorial close */}
+{/* ========================================= */}
+
+<section className="relative overflow-hidden bg-emerald-deep py-8 text-ivory sm:py-8 md:py-10">
+
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,165,96,0.14),transparent_50%)]" />
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(200,165,96,0.08),transparent_45%)]" />
+
+  <div className="container-luxe relative">
+
+    {/* Headline */}
+
+    <div className="mx-auto max-w-2xl text-center">
+
+      <p className="text-[9px] uppercase tracking-[0.24em] text-brass sm:text-[10px] sm:tracking-[0.26em]">
+        Let's Build Something Lavish
+      </p>
+
+      <h2 className="mt-2 font-display text-2xl font-semibold leading-tight tracking-tight sm:mt-3 sm:text-2xl md:text-3xl lg:text-4xl">
+        Ready to start
+        <br />
+        your space?
+      </h2>
+
+      <p className="mx-auto mt-2 max-w-md text-xs leading-5 text-ivory/70 sm:mt-3 sm:text-xs sm:leading-5 md:text-sm md:leading-6">
+        Visit our studio at Khan Complex, Bariatu Road, Ranchi — or reach out
+        directly and we'll come to you.
+      </p>
+
+    </div>
+
+    {/* Quick action cards */}
+
+    <div className="mx-auto mt-6 grid max-w-3xl grid-cols-1 gap-2.5 sm:mt-6 sm:grid-cols-3 sm:gap-2.5 md:mt-8">
+
+      
+      <a  href="tel:+918085509001"
+        className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition duration-300 hover:border-brass/40 hover:bg-white/10 sm:flex-col sm:items-start sm:gap-0 sm:rounded-xl sm:p-3"
+      >
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brass/15 text-brass transition duration-300 group-hover:scale-105 sm:h-8 sm:w-8">
+          <Phone size={16} className="sm:size-[14px]" />
+        </span>
+        <div className="sm:mt-2.5">
+          <p className="text-[9px] uppercase tracking-[0.14em] text-ivory/50 sm:text-[9px]">Call Us</p>
+          <p className="mt-0.5 text-xs font-semibold text-ivory sm:text-xs">+91 80855 09001</p>
+        </div>
+        <ArrowUpRight size={14} className="ml-auto text-ivory/30 transition group-hover:text-brass sm:hidden" />
+      </a>
+
+      
+      <a href="https://wa.me/918085509001"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition duration-300 hover:border-brass/40 hover:bg-white/10 sm:flex-col sm:items-start sm:gap-0 sm:rounded-xl sm:p-3"
+      >
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brass/15 text-brass transition duration-300 group-hover:scale-105 sm:h-8 sm:w-8">
+          <MessageCircle size={16} className="sm:size-[14px]" />
+        </span>
+        <div className="sm:mt-2.5">
+          <p className="text-[9px] uppercase tracking-[0.14em] text-ivory/50 sm:text-[9px]">WhatsApp</p>
+          <p className="mt-0.5 text-xs font-semibold text-ivory sm:text-xs">Chat with us</p>
+        </div>
+        <ArrowUpRight size={14} className="ml-auto text-ivory/30 transition group-hover:text-brass sm:hidden" />
+      </a>
+
+      
+      <a  href="https://maps.google.com/maps?q=Bariatu%20Road%20Ranchi"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition duration-300 hover:border-brass/40 hover:bg-white/10 sm:flex-col sm:items-start sm:gap-0 sm:rounded-xl sm:p-3"
+      >
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brass/15 text-brass transition duration-300 group-hover:scale-105 sm:h-8 sm:w-8">
+          <MapPin size={16} className="sm:size-[14px]" />
+        </span>
+        <div className="sm:mt-2.5">
+          <p className="text-[9px] uppercase tracking-[0.14em] text-ivory/50 sm:text-[9px]">Visit Studio</p>
+          <p className="mt-0.5 text-xs font-semibold text-ivory sm:text-xs">Bariatu Road, Ranchi</p>
+        </div>
+        <ArrowUpRight size={14} className="ml-auto text-ivory/30 transition group-hover:text-brass sm:hidden" />
+      </a>
+
+    </div>
+
+    {/* Stats strip */}
+
+    <div className="mx-auto mt-6 flex max-w-2xl items-center justify-center gap-6 border-t border-white/10 pt-5 sm:mt-6 sm:gap-8 sm:pt-4 md:mt-8">
+
+      <div className="text-center">
+        <p className="font-display text-lg font-semibold text-brass sm:text-lg">250+</p>
+        <p className="mt-0.5 text-[8px] uppercase tracking-[0.14em] text-ivory/50 sm:text-[9px] sm:tracking-[0.16em]">Projects</p>
+      </div>
+
+      <div className="h-8 w-px bg-white/10" />
+
+      <div className="text-center">
+        <p className="font-display text-lg font-semibold text-brass sm:text-lg">45</p>
+        <p className="mt-0.5 text-[8px] uppercase tracking-[0.14em] text-ivory/50 sm:text-[9px] sm:tracking-[0.16em]">Days Delivery</p>
+      </div>
+
+      <div className="h-8 w-px bg-white/10" />
+
+      <div className="text-center">
+        <p className="font-display text-lg font-semibold text-brass sm:text-lg">10Y</p>
+        <p className="mt-0.5 text-[8px] uppercase tracking-[0.14em] text-ivory/50 sm:text-[9px] sm:tracking-[0.16em]">Warranty</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
       <FAQ />
