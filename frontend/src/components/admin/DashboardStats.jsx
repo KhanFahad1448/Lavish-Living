@@ -6,9 +6,14 @@ import {
   PlusCircle,
   FolderOpen,
   ClipboardList,
+  Loader2,
+  ArrowUpRight,
 } from "lucide-react";
 
 import { useAdmin } from "../../context/AdminContext";
+
+const hexClip =
+  "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)";
 
 export default function DashboardStats() {
   const {
@@ -26,125 +31,101 @@ export default function DashboardStats() {
     ).length,
   };
 
-  const cards = [
-    {
-      title: "Projects",
-      value: stats.projects,
-      icon: FolderKanban,
-    },
-    {
-      title: "Inquiries",
-      value: stats.inquiries,
-      icon: MessageSquare,
-    },
-    {
-      title: "Featured",
-      value: stats.featured,
-      icon: Star,
-    },
-    {
-      title: "New Leads",
-      value: stats.newInquiries,
-      icon: Bell,
-    },
-  ];
-
   if (loading) {
     return (
-      <div className="py-20 text-center">
-        Loading Dashboard...
+      <div className="flex flex-col items-center justify-center py-10 sm:py-14">
+        <Loader2 size={22} className="animate-spin text-brass sm:size-6" />
+        <p className="mt-2.5 text-xs text-ink/60 sm:text-sm">
+          Loading dashboard...
+        </p>
       </div>
     );
   }
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-emerald-deep">
-        Dashboard
-      </h1>
 
-      <p className="mt-3 text-ink/60">
-        Welcome back to Lavish Living Admin Panel.
-      </p>
+      {/* ========================================= */}
+      {/* Hero banner — dark, with inline stats */}
+      {/* ========================================= */}
 
-      {/* Statistics */}
+      <div className="relative overflow-hidden rounded-xl bg-emerald-deep p-3 text-ivory sm:rounded-2xl sm:p-5 lg:p-6">
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,165,96,0.14),transparent_55%)]" />
 
-        {cards.map((card) => {
-          const Icon = card.icon;
+        <div className="relative">
 
-          return (
-            <div
-              key={card.title}
-              className="rounded-2xl bg-white p-6 shadow-soft"
-            >
-              <div className="flex items-center justify-between">
+          <p className="text-[8px] uppercase tracking-[0.16em] text-brass sm:text-[9px] sm:tracking-[0.22em]">
+            Admin Panel
+          </p>
+          <h1 className="mt-1 font-display text-base font-semibold tracking-tight sm:text-lg md:text-xl">
+            Welcome back.
+          </h1>
+          <p className="mt-0.5 text-[11px] text-ivory/65 sm:text-xs">
+            Here's what's happening at Lavish Living today.
+          </p>
 
-                <div>
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-white/10 pt-2.5 sm:mt-4 sm:gap-x-6 sm:pt-3.5">
 
-                  <p className="text-sm uppercase tracking-wide text-ink/50">
-                    {card.title}
-                  </p>
+            <StatInline value={stats.projects} label="Projects" />
+            <Divider />
+            <StatInline value={stats.inquiries} label="Inquiries" />
+            <Divider />
+            <StatInline value={stats.featured} label="Featured" />
+            <Divider />
+            <StatInline value={stats.newInquiries} label="New Leads" accent />
 
-                  <h2 className="mt-3 font-display text-5xl text-emerald-deep">
-                    {card.value}
-                  </h2>
+          </div>
 
-                </div>
-
-                <div className="rounded-full bg-emerald-50 p-4">
-                  <Icon
-                    size={28}
-                    className="text-emerald-deep"
-                  />
-                </div>
-
-              </div>
-            </div>
-          );
-        })}
+        </div>
 
       </div>
 
+      {/* ========================================= */}
       {/* Recent Data */}
+      {/* ========================================= */}
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-2">
+      <div className="mt-2.5 grid gap-2.5 sm:mt-4 sm:gap-3 lg:grid-cols-2">
 
         {/* Recent Projects */}
 
-        <div className="rounded-2xl bg-white p-6 shadow-soft">
+        <div className="rounded-lg border border-emerald/10 bg-white p-3 sm:rounded-xl sm:p-4">
 
-          <h2 className="font-display text-2xl text-emerald-deep">
-            Recent Projects
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="font-display text-xs font-semibold tracking-tight text-emerald-deep sm:text-sm">
+              Recent Projects
+            </h2>
+            <FolderKanban size={12} className="text-brass/50" />
+          </div>
 
-          <div className="mt-6 space-y-4">
+          <div className="mt-2 space-y-0.5 sm:mt-3 sm:space-y-1">
 
             {projects.length === 0 ? (
-              <p>No projects found.</p>
+              <p className="text-[11px] text-ink/50">No projects found.</p>
             ) : (
               projects.slice(0, 5).map((project) => (
                 <div
                   key={project._id}
-                  className="flex items-center justify-between border-b pb-3"
+                  className="flex items-center gap-2 rounded-md px-1 py-1 transition hover:bg-cream sm:gap-2.5 sm:px-1.5 sm:py-1.5"
                 >
-                  <div>
+                  <span
+                    className="grid h-6 w-6 shrink-0 place-items-center bg-brass/10 text-brass sm:h-7 sm:w-7"
+                    style={{ clipPath: hexClip }}
+                  >
+                    <FolderKanban size={11} />
+                  </span>
 
-                    <p className="font-semibold">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[11px] font-semibold text-emerald-deep sm:text-xs">
                       {project.title}
                     </p>
-
-                    <p className="text-sm text-ink/60">
+                    <p className="truncate text-[9px] text-ink/50 sm:text-[10px]">
                       {project.category}
                     </p>
-
                   </div>
 
                   {project.featured && (
-                    <span className="rounded-full bg-green-100 px-3 py-1 text-xs text-green-700">
-                      Featured
-                    </span>
+                    <Star size={11} className="shrink-0 fill-brass text-brass" />
                   )}
                 </div>
               ))
@@ -156,35 +137,48 @@ export default function DashboardStats() {
 
         {/* Recent Inquiries */}
 
-        <div className="rounded-2xl bg-white p-6 shadow-soft">
+        <div className="rounded-lg border border-emerald/10 bg-white p-3 sm:rounded-xl sm:p-4">
 
-          <h2 className="font-display text-2xl text-emerald-deep">
-            Recent Inquiries
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="font-display text-xs font-semibold tracking-tight text-emerald-deep sm:text-sm">
+              Recent Inquiries
+            </h2>
+            <MessageSquare size={12} className="text-brass/50" />
+          </div>
 
-          <div className="mt-6 space-y-4">
+          <div className="mt-2 space-y-0.5 sm:mt-3 sm:space-y-1">
 
             {inquiries.length === 0 ? (
-              <p>No inquiries found.</p>
+              <p className="text-[11px] text-ink/50">No inquiries found.</p>
             ) : (
               inquiries.slice(0, 5).map((item) => (
                 <div
                   key={item._id}
-                  className="flex items-center justify-between border-b pb-3"
+                  className="flex items-center gap-2 rounded-md px-1 py-1 transition hover:bg-cream sm:gap-2.5 sm:px-1.5 sm:py-1.5"
                 >
-                  <div>
+                  <span
+                    className="grid h-6 w-6 shrink-0 place-items-center bg-brass/10 text-brass sm:h-7 sm:w-7"
+                    style={{ clipPath: hexClip }}
+                  >
+                    <MessageSquare size={11} />
+                  </span>
 
-                    <p className="font-semibold">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[11px] font-semibold text-emerald-deep sm:text-xs">
                       {item.name}
                     </p>
-
-                    <p className="text-sm text-ink/60">
+                    <p className="truncate text-[9px] text-ink/50 sm:text-[10px]">
                       {item.service || "General Inquiry"}
                     </p>
-
                   </div>
 
-                  <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs text-yellow-700">
+                  <span
+                    className={`shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-semibold sm:text-[9px] ${
+                      item.status === "new"
+                        ? "bg-brass/15 text-brass"
+                        : "bg-emerald/10 text-emerald"
+                    }`}
+                  >
                     {item.status}
                   </span>
                 </div>
@@ -197,35 +191,59 @@ export default function DashboardStats() {
 
       </div>
 
-      {/* Quick Actions */}
+      {/* ========================================= */}
+      {/* Quick Actions — hexagon icon tray */}
+      {/* ========================================= */}
 
-      <div className="mt-10 rounded-2xl bg-white p-6 shadow-soft">
+      <div className="mt-2.5 rounded-lg border border-emerald/10 bg-white p-3 sm:mt-4 sm:rounded-xl sm:p-4">
 
-        <h2 className="font-display text-2xl text-emerald-deep">
+        <h2 className="font-display text-xs font-semibold tracking-tight text-emerald-deep sm:text-sm">
           Quick Actions
         </h2>
 
-        <div className="mt-6 flex flex-wrap gap-4">
+        <div className="mt-2.5 flex flex-wrap gap-3 sm:mt-3 sm:gap-5">
 
-          <button className="btn-primary flex items-center gap-2">
-            <PlusCircle size={18} />
-            Add Project
-          </button>
-
-          <button className="btn-outline flex items-center gap-2">
-            <FolderOpen size={18} />
-            Manage Projects
-          </button>
-
-          <button className="btn-outline flex items-center gap-2">
-            <ClipboardList size={18} />
-            View Inquiries
-          </button>
+          <QuickAction icon={PlusCircle} label="Add Project" />
+          <QuickAction icon={FolderOpen} label="Manage Projects" />
+          <QuickAction icon={ClipboardList} label="View Inquiries" />
 
         </div>
 
       </div>
 
     </div>
+  );
+}
+
+function StatInline({ value, label, accent }) {
+  return (
+    <div>
+      <p className={`font-display text-sm font-semibold sm:text-lg ${accent ? "text-brass" : "text-ivory"}`}>
+        {value}
+      </p>
+      <p className="mt-0.5 text-[7px] uppercase tracking-[0.08em] text-ivory/50 sm:text-[8px] sm:tracking-[0.12em]">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function Divider() {
+  return <span className="h-5 w-px bg-white/10 sm:h-6" />;
+}
+
+function QuickAction({ icon: Icon, label }) {
+  return (
+    <button className="group flex flex-col items-center gap-1">
+      <span
+        className="grid h-9 w-9 place-items-center bg-gradient-luxe text-brass shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg sm:h-10 sm:w-10"
+        style={{ clipPath: hexClip }}
+      >
+        <Icon size={14} />
+      </span>
+      <span className="text-center text-[8px] font-medium leading-tight text-ink/60 transition-colors group-hover:text-brass sm:text-[9px]">
+        {label}
+      </span>
+    </button>
   );
 }

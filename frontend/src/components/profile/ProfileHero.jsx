@@ -1,5 +1,4 @@
 import {
-  User,
   Edit3,
   Lock,
   CalendarDays,
@@ -7,6 +6,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  ShieldCheck,
 } from "lucide-react";
 
 export default function ProfileHero({
@@ -31,296 +31,146 @@ export default function ProfileHero({
     : "Recently Joined";
 
   return (
-    <section className="relative overflow-hidden rounded-2xl sm:rounded-[32px] border border-emerald/10 bg-white shadow-soft">
+    <section className="rounded-2xl border border-emerald/10 bg-white p-4 shadow-soft sm:rounded-3xl sm:p-6 lg:p-8">
 
-      {/* Decorative Background */}
+      {/* ========================================= */}
+      {/* Top row — avatar, identity, actions */}
+      {/* ========================================= */}
 
-      <div className="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-brass/5 blur-3xl" />
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
 
-      <div className="absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-emerald/5 blur-3xl" />
+        <div className="flex items-center gap-3 sm:gap-4">
 
-      <div className="relative p-4 sm:p-6 lg:p-10">
-
-        {/* Hero */}
-
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-
-          {/* Left */}
-
-          <div className="flex items-start gap-4 sm:gap-5">
-
-            {/* Avatar */}
-
-            <div className="relative flex-shrink-0">
-
-              <div className="flex h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 items-center justify-center rounded-full bg-gradient-luxe text-xl sm:text-2xl lg:text-3xl font-display text-brass shadow-lg">
-
-                {initials}
-
-              </div>
-
-              <div className="absolute bottom-0 right-0 flex h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 items-center justify-center rounded-full border-2 border-white bg-emerald text-white">
-
-                <User size={13} />
-
-              </div>
-
-            </div>
-
-            {/* Welcome */}
-
-            <div>
-
-              <span className="inline-flex items-center gap-2 rounded-full bg-brass/10 px-2.5 py-1 text-[9px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-brass">
-
-                <Crown size={12} />
-
-                Premium Client
-
-              </span>
-
-              <p className="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-ink/45">
-
-                Welcome Back
-
-              </p>
-
-              <h1 className="mt-2 font-display text-2xl sm:text-3xl lg:text-4xl text-emerald-deep">
-
-                {user?.name || "Customer"}
-
-              </h1>
-
-              <p className="mt-3 max-w-xl text-sm sm:text-[15px] leading-6 sm:leading-7 text-ink/60">
-
-                Every beautiful home begins with a conversation.
-                Track your interior journey, monitor project updates,
-                and stay connected with Lavish Living.
-
-              </p>
-
-            </div>
-
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-luxe font-display text-lg font-semibold text-brass shadow-md sm:h-16 sm:w-16 sm:text-xl lg:h-20 lg:w-20 lg:text-2xl">
+            {initials}
           </div>
 
-          {/* Summary */}
+          <div className="min-w-0">
+            <span className="inline-flex items-center gap-1 rounded-full bg-brass/10 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-brass sm:text-[10px]">
+              <Crown size={11} />
+              Premium Client
+            </span>
 
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 w-full lg:w-auto">
+            <h1 className="mt-1.5 truncate font-display text-xl font-semibold leading-tight tracking-tight text-emerald-deep sm:mt-2 sm:text-2xl lg:text-3xl">
+              {user?.name || "Customer"}
+            </h1>
 
-            <div className="rounded-xl sm:rounded-2xl border border-emerald/10 bg-cream px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-5">
-
-              <p className="text-[9px] sm:text-xs uppercase tracking-[0.15em] text-ink/50">
-
-                Enquiries
-
-              </p>
-
-              <h3 className="mt-1 sm:mt-2 font-display text-xl sm:text-2xl lg:text-3xl text-emerald-deep">
-
-                {totalEnquiries}
-
-              </h3>
-
-            </div>
-
-            <div className="rounded-xl sm:rounded-2xl border border-emerald/10 bg-cream px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-5">
-
-              <p className="text-[9px] sm:text-xs uppercase tracking-[0.15em] text-ink/50">
-
-                Status
-
-              </p>
-
-              <h3 className="mt-1 sm:mt-2 text-sm sm:text-lg lg:text-xl font-semibold text-brass">
-
-                Active
-
-              </h3>
-
-            </div>
-
-            <div className="rounded-xl sm:rounded-2xl border border-emerald/10 bg-cream px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-5">
-
-              <p className="text-[9px] sm:text-xs uppercase tracking-[0.15em] text-ink/50">
-
-                Member
-
-              </p>
-
-              <h3 className="mt-1 sm:mt-2 text-[11px] sm:text-sm lg:text-base font-semibold text-emerald-deep">
-
-                {memberSince}
-
-              </h3>
-
-            </div>
-
+            <p className="mt-1 text-xs text-ink/55 sm:text-sm">
+              Welcome back to your Lavish Living account.
+            </p>
           </div>
 
         </div>
 
-        {/* Divider */}
+        {/* Actions — compact pills, not full-width */}
 
-        <div className="my-6 sm:my-8 lg:my-10 h-px bg-gradient-to-r from-transparent via-emerald/15 to-transparent" />
+        <div className="flex shrink-0 gap-2 sm:gap-2.5">
 
-        {/* Bottom Starts */}
+          <button
+            onClick={onEdit}
+            className="inline-flex items-center gap-1.5 rounded-full bg-gradient-luxe px-3.5 py-2 text-xs font-semibold text-brass transition duration-300 hover:shadow-md sm:px-4 sm:py-2.5 sm:text-sm"
+          >
+            <Edit3 size={13} />
+            Edit
+          </button>
 
-        <div className="grid gap-5 sm:gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-
-                  {/* Profile Information Card */}
-
-          <div className="rounded-2xl sm:rounded-3xl border border-emerald/10 bg-gradient-to-br from-white to-cream p-4 sm:p-6 lg:p-7 shadow-soft">
-
-            <div className="mb-5 sm:mb-6 flex items-center justify-between">
-
-              <h2 className="font-display text-xl sm:text-2xl text-emerald-deep">
-                Profile Information
-              </h2>
-
-              <span className="rounded-full bg-emerald/10 px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] text-emerald">
-                Verified
-              </span>
-
-            </div>
-
-            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
-
-              <div className="flex items-start gap-3">
-
-                <div className="rounded-xl bg-gradient-luxe p-2.5 sm:p-3 text-brass">
-                  <Mail size={16} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
-                    Email
-                  </p>
-
-                  <p className="mt-1 text-sm sm:text-base font-medium text-emerald-deep break-all">
-                    {user?.email || "Not Available"}
-                  </p>
-
-                </div>
-
-              </div>
-
-              <div className="flex items-start gap-3">
-
-                <div className="rounded-xl bg-gradient-luxe p-2.5 sm:p-3 text-brass">
-                  <Phone size={16} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
-                    Phone
-                  </p>
-
-                  <p className="mt-1 text-sm sm:text-base font-medium text-emerald-deep">
-                    {user?.phone || "Not Added"}
-                  </p>
-
-                </div>
-
-              </div>
-
-              <div className="flex items-start gap-3">
-
-                <div className="rounded-xl bg-gradient-luxe p-2.5 sm:p-3 text-brass">
-                  <MapPin size={16} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
-                    Location
-                  </p>
-
-                  <p className="mt-1 text-sm sm:text-base font-medium text-emerald-deep">
-                    {user?.location || "Not Specified"}
-                  </p>
-
-                </div>
-
-              </div>
-
-              <div className="flex items-start gap-3">
-
-                <div className="rounded-xl bg-gradient-luxe p-2.5 sm:p-3 text-brass">
-                  <CalendarDays size={16} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
-                    Member Since
-                  </p>
-
-                  <p className="mt-1 text-sm sm:text-base font-medium text-emerald-deep">
-                    {memberSince}
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Account Settings */}
-
-          <div className="rounded-2xl sm:rounded-3xl border border-emerald/10 bg-white p-4 sm:p-6 lg:p-7 shadow-soft">
-
-            <h2 className="font-display text-xl sm:text-2xl text-emerald-deep">
-              Account Settings
-            </h2>
-
-            <p className="mt-3 text-sm sm:text-[15px] leading-6 sm:leading-7 text-ink/60">
-              Keep your personal information up to date and secure your
-              Lavish Living account with a strong password.
-            </p>
-
-            <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4">
-
-              <button
-                onClick={onEdit}
-                className="flex w-full items-center justify-center gap-3 rounded-xl sm:rounded-2xl bg-gradient-luxe px-5 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-semibold text-brass transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              >
-                <Edit3 size={17} />
-                Edit Profile
-              </button>
-
-              <button
-                onClick={onChangePassword}
-                className="flex w-full items-center justify-center gap-3 rounded-xl sm:rounded-2xl border border-emerald/10 bg-white px-5 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-semibold text-emerald-deep transition-all duration-300 hover:border-brass hover:shadow-md"
-              >
-                <Lock size={17} />
-                Change Password
-              </button>
-
-            </div>
-
-            <div className="mt-6 sm:mt-8 rounded-2xl bg-cream p-4 sm:p-5">
-
-              <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
-                Lavish Living Promise
-              </p>
-
-              <p className="mt-3 text-xs sm:text-sm leading-6 sm:leading-7 text-ink/65">
-                Your information remains private and is only used to provide
-                project updates, quotations and design consultations.
-              </p>
-
-            </div>
-
-          </div>
+          <button
+            onClick={onChangePassword}
+            className="inline-flex items-center gap-1.5 rounded-full border border-emerald/15 bg-white px-3.5 py-2 text-xs font-semibold text-emerald-deep transition duration-300 hover:border-brass sm:px-4 sm:py-2.5 sm:text-sm"
+          >
+            <Lock size={13} />
+            Password
+          </button>
 
         </div>
 
       </div>
 
+      {/* ========================================= */}
+      {/* Inline stat line */}
+      {/* ========================================= */}
+
+      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-xl bg-cream px-3.5 py-2.5 sm:mt-5 sm:gap-x-4 sm:px-4 sm:py-3">
+
+        <span className="inline-flex items-baseline gap-1.5">
+          <b className="font-display text-sm font-semibold text-emerald-deep sm:text-base">{totalEnquiries}</b>
+          <span className="text-[10px] uppercase tracking-[0.08em] text-ink/50 sm:text-xs">Enquiries</span>
+        </span>
+
+        <span className="h-3 w-px bg-emerald/15" />
+
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-brass" />
+          <span className="text-[10px] font-medium text-brass sm:text-xs">Active</span>
+        </span>
+
+        <span className="h-3 w-px bg-emerald/15" />
+
+        <span className="text-[10px] text-ink/50 sm:text-xs">
+          Member since {memberSince}
+        </span>
+
+      </div>
+
+      {/* Divider */}
+
+      <div className="my-5 h-px bg-gradient-to-r from-transparent via-emerald/15 to-transparent sm:my-6" />
+
+      {/* ========================================= */}
+      {/* Contact information grid */}
+      {/* ========================================= */}
+
+      <div>
+
+        <div className="mb-3 flex items-center justify-between sm:mb-4">
+          <h2 className="font-display text-base font-semibold text-emerald-deep sm:text-lg">
+            Profile Information
+          </h2>
+          <span className="rounded-full bg-emerald/10 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-emerald sm:text-[10px]">
+            Verified
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+
+          <Field icon={Mail} label="Email">{user?.email || "Not Available"}</Field>
+          <Field icon={Phone} label="Phone">{user?.phone || "Not Added"}</Field>
+          <Field icon={MapPin} label="Location">{user?.location || "Not Specified"}</Field>
+          <Field icon={CalendarDays} label="Member Since">{memberSince}</Field>
+
+        </div>
+
+      </div>
+
+      {/* Trust note */}
+
+      <p className="mt-5 flex items-start gap-2 rounded-xl bg-cream px-3.5 py-3 text-[11px] leading-5 text-ink/60 sm:mt-6 sm:px-4 sm:text-xs">
+        <ShieldCheck size={14} className="mt-0.5 shrink-0 text-emerald/60" />
+        Your information stays private — used only for project updates,
+        quotations, and design consultations.
+      </p>
+
     </section>
   );
-}  
+}
+
+function Field({ icon: Icon, label, children }) {
+  return (
+    <div className="flex items-start gap-3 rounded-xl border border-emerald/10 bg-white px-3.5 py-3">
+
+      <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brass/10 text-brass">
+        <Icon size={14} />
+      </div>
+
+      <div className="min-w-0">
+        <p className="text-[9px] uppercase tracking-[0.12em] text-ink/45 sm:text-[10px]">
+          {label}
+        </p>
+        <p className="mt-0.5 truncate text-sm font-medium text-emerald-deep">
+          {children}
+        </p>
+      </div>
+
+    </div>
+  );
+}

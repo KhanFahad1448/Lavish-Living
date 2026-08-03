@@ -6,7 +6,6 @@ import {
   CalendarDays,
   ShieldCheck,
   Pencil,
-  ChevronRight,
 } from "lucide-react";
 
 export default function PersonalInformation({
@@ -59,128 +58,73 @@ export default function PersonalInformation({
   ];
 
   return (
-    <section className="mt-8 sm:mt-10">
+    <section className="mt-5 sm:mt-6">
 
       {/* Heading */}
 
-      <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div className="mb-3 flex flex-col gap-3 sm:mb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
 
-        <div>
+        <div className="min-w-0">
 
-          <p className="text-[10px] uppercase tracking-[0.22em] text-brass sm:text-xs">
-            PERSONAL INFORMATION
+          <p className="text-[9px] uppercase tracking-[0.16em] text-brass sm:text-[10px]">
+            Personal Information
           </p>
 
-          <h2 className="mt-2 font-display text-2xl text-emerald-deep sm:text-3xl">
+          <h2 className="mt-1 font-display text-base font-semibold tracking-tight text-emerald-deep sm:text-lg">
             Client Information
           </h2>
 
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-ink/60 sm:text-[15px] sm:leading-7">
-            Your personal information used for quotations,
-            project updates and communication throughout
-            your Lavish Living journey.
+          <p className="mt-1 max-w-xl text-xs leading-5 text-ink/55 sm:text-sm sm:leading-6">
+            Used for quotations, project updates, and communication
+            throughout your journey.
           </p>
 
         </div>
 
         <button
           onClick={onEdit}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-brass bg-gradient-luxe px-5 py-3 text-sm font-semibold text-brass transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-luxe px-3.5 py-2 text-xs font-semibold text-brass transition duration-300 hover:shadow-md sm:px-4 sm:py-2.5 sm:text-sm"
         >
-
-          <Pencil size={16} />
-
-          Edit Profile
-
+          <Pencil size={13} />
+          Edit
         </button>
 
       </div>
 
       {/* Cards */}
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
 
-        {cards.map((card, index) => {
-          const Icon = card.icon;
-
-          return (
-            <InfoCard
-              key={index}
-              icon={Icon}
-              title={card.title}
-              value={card.value}
-            />
-          );
-        })}
+        {cards.map((card, index) => (
+          <InfoCard
+            key={index}
+            icon={card.icon}
+            title={card.title}
+            value={card.value}
+          />
+        ))}
 
       </div>
 
     </section>
   );
-  }
+}
 
-function InfoCard({
-  icon: Icon,
-  title,
-  value,
-}) {
+function InfoCard({ icon: Icon, title, value }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-emerald/10 bg-white p-4 sm:p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brass/40 hover:shadow-luxe">
+    <div className="flex items-start gap-3 rounded-xl border border-emerald/10 bg-white px-3.5 py-3 transition duration-300 hover:border-brass/30">
 
-      {/* Decorative Background */}
-
-      <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brass/5 blur-3xl transition duration-500 group-hover:scale-125" />
-
-      <div className="relative flex items-center justify-between">
-
-        {/* Left */}
-
-        <div className="flex items-center gap-4 min-w-0">
-
-          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-luxe text-brass shadow-sm transition duration-300 group-hover:scale-110">
-
-            <Icon className="h-5 w-5" />
-
-          </div>
-
-          <div className="min-w-0">
-
-            <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45">
-
-              {title}
-
-            </p>
-
-            <h3 className="mt-1 truncate text-sm sm:text-base font-semibold text-emerald-deep">
-
-              {value}
-
-            </h3>
-
-          </div>
-
-        </div>
-
-        {/* Right */}
-
-        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-cream transition duration-300 group-hover:bg-brass group-hover:text-white">
-
-          <ChevronRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" />
-
-        </div>
-
+      <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brass/10 text-brass">
+        <Icon size={14} />
       </div>
 
-      {/* Bottom Accent */}
-
-      <div className="mt-5 flex items-center justify-between border-t border-emerald/10 pt-3">
-
-        <span className="text-[11px] text-ink/45">
-          Verified Information
-        </span>
-
-        <span className="h-2 w-2 rounded-full bg-emerald"></span>
-
+      <div className="min-w-0">
+        <p className="text-[9px] uppercase tracking-[0.12em] text-ink/45 sm:text-[10px]">
+          {title}
+        </p>
+        <p className="mt-0.5 truncate text-sm font-medium text-emerald-deep">
+          {value}
+        </p>
       </div>
 
     </div>

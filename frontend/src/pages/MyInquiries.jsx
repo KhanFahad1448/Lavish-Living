@@ -37,21 +37,21 @@ export default function MyInquiries() {
 
       {/* Hero */}
 
-      <section className="bg-gradient-luxe py-24 text-ivory">
+      <section className="bg-gradient-luxe py-8 text-ivory sm:py-10 md:py-14">
 
         <div className="container-luxe max-w-3xl">
 
-          <p className="text-xs uppercase tracking-[0.2em] text-brass">
+          <p className="text-[9px] uppercase tracking-[0.2em] text-brass sm:text-xs">
             Customer Dashboard
           </p>
 
-          <h1 className="mt-3 font-display text-5xl">
+          <h1 className="mt-2 font-display text-2xl font-semibold leading-tight tracking-tight sm:mt-3 sm:text-3xl md:text-4xl">
             My Enquiries
           </h1>
 
-          <p className="mt-5 text-lg leading-8 text-ivory/80">
-            Track every enquiry you've submitted, monitor its current
-            progress and stay updated throughout your interior journey.
+          <p className="mt-2 text-xs leading-5 text-ivory/80 sm:mt-3 sm:text-sm sm:leading-6 md:text-base">
+            Track every enquiry you've submitted, monitor its progress
+            and stay updated throughout your journey.
           </p>
 
         </div>
@@ -60,20 +60,17 @@ export default function MyInquiries() {
 
       {/* Content */}
 
-      <section className="section-pad bg-cream">
+      <section className="bg-cream py-6 sm:py-8 md:py-12">
 
         <div className="container-luxe">
 
           {loading ? (
 
-            <div className="flex flex-col items-center justify-center py-24">
+            <div className="flex flex-col items-center justify-center py-14 sm:py-20">
 
-              <Loader2
-                size={42}
-                className="animate-spin text-brass"
-              />
+              <Loader2 size={26} className="animate-spin text-brass sm:size-8" />
 
-              <p className="mt-5 text-ink/60">
+              <p className="mt-3 text-xs text-ink/60 sm:mt-4 sm:text-sm">
                 Loading your enquiries...
               </p>
 
@@ -81,25 +78,19 @@ export default function MyInquiries() {
 
           ) : inquiries.length === 0 ? (
 
-            <div className="rounded-3xl bg-white p-16 text-center shadow-soft">
+            <div className="rounded-2xl bg-white p-6 text-center shadow-soft sm:rounded-3xl sm:p-10">
 
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-luxe">
-
-                <ClipboardList
-                  size={34}
-                  className="text-brass"
-                />
-
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-luxe sm:h-16 sm:w-16">
+                <ClipboardList size={20} className="text-brass sm:size-6" />
               </div>
 
-              <h2 className="mt-8 font-display text-4xl text-emerald-deep">
+              <h2 className="mt-4 font-display text-lg font-semibold tracking-tight text-emerald-deep sm:mt-5 sm:text-xl md:text-2xl">
                 No enquiries yet
               </h2>
 
-              <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-ink/65">
-                You haven't submitted any enquiries yet.
-                Once you fill out an enquiry form, it will appear here so
-                you can easily track its progress.
+              <p className="mx-auto mt-2 max-w-md text-xs leading-5 text-ink/65 sm:mt-3 sm:text-sm sm:leading-6">
+                Once you submit an enquiry form, it will appear here so
+                you can track its progress.
               </p>
 
             </div>
@@ -108,13 +99,13 @@ export default function MyInquiries() {
 
             <div>
 
-              <div className="mb-10">
+              <div className="mb-4 sm:mb-6">
 
-                <h2 className="font-display text-4xl text-emerald-deep">
+                <h2 className="font-display text-lg font-semibold tracking-tight text-emerald-deep sm:text-xl md:text-2xl">
                   Your Interior Projects
                 </h2>
 
-                <p className="mt-2 text-ink/60">
+                <p className="mt-1 text-xs text-ink/60 sm:text-sm">
                   Total Enquiries:{" "}
                   <span className="font-semibold text-brass">
                     {inquiries.length}
@@ -123,15 +114,13 @@ export default function MyInquiries() {
 
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-3 sm:space-y-4">
 
                 {inquiries.map((inquiry) => (
-
                   <InquiryCard
                     key={inquiry._id}
                     inquiry={inquiry}
                   />
-
                 ))}
 
               </div>

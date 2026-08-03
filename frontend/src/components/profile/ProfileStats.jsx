@@ -3,7 +3,6 @@ import {
   Home,
   FileText,
   Star,
-  ArrowUpRight,
 } from "lucide-react";
 
 export default function ProfileStats({
@@ -17,133 +16,82 @@ export default function ProfileStats({
       title: "Total Enquiries",
       value: totalEnquiries,
       icon: ClipboardList,
-      subtitle: "Design consultations",
     },
     {
       title: "Running Projects",
       value: activeProjects,
       icon: Home,
-      subtitle: "Currently in progress",
     },
     {
       title: "Quotations",
       value: quotations,
       icon: FileText,
-      subtitle: "Price estimates shared",
     },
     {
       title: "Reviews",
       value: reviews,
       icon: Star,
-      subtitle: "Feedback submitted",
     },
   ];
 
   return (
-    <section className="mt-8 sm:mt-10">
+    <section className="mt-5 sm:mt-6">
 
       {/* Heading */}
 
-      <div className="mb-6 sm:mb-8">
+      <div className="mb-3 sm:mb-4">
 
-        <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] text-brass">
+        <p className="text-[9px] uppercase tracking-[0.16em] text-brass sm:text-[10px]">
           Overview
         </p>
 
-        <h2 className="mt-2 font-display text-2xl sm:text-3xl text-emerald-deep">
+        <h2 className="mt-1 font-display text-base font-semibold tracking-tight text-emerald-deep sm:text-lg">
           Your Journey At A Glance
         </h2>
 
-        <p className="mt-2 max-w-2xl text-sm sm:text-[15px] leading-6 sm:leading-7 text-ink/60">
-          Track every milestone of your interior journey with Lavish Living,
-          from your first consultation to completed dream spaces.
+        <p className="mt-1 max-w-xl text-xs leading-5 text-ink/55 sm:text-sm sm:leading-6">
+          Track every milestone, from your first consultation to
+          completed dream spaces.
         </p>
 
       </div>
 
       {/* Cards */}
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
 
-        {cards.map((card) => {
-          const Icon = card.icon;
-
-          return (
-            <div
-              key={card.title}
-              className="group overflow-hidden rounded-2xl sm:rounded-3xl border border-emerald/10 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-luxe"
-            >
-
-              {/* Brass Accent */}
-
-              <div className="h-1 w-full bg-gradient-to-r from-brass via-[#d4b06b] to-brass" />
-
-              <div className="p-3 sm:p-5 lg:p-6">
-
-                {/* Top */}
-
-                <div className="flex items-center justify-between">
-
-                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-luxe text-brass">
-
-                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
-
-                  </div>
-
-                  <ArrowUpRight
-                    className="h-4 w-4 sm:h-5 sm:w-5 text-brass transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                  />
-
-                </div>
-
-                {/* Value */}
-
-                <h3 className="mt-4 sm:mt-6 font-display text-2xl sm:text-3xl lg:text-4xl text-emerald-deep">
-
-                  {card.value}
-
-                </h3>
-
-                {/* Title */}
-
-                <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-ink/45 leading-4">
-
-                  {card.title}
-
-                </p>
-
-                {/* Subtitle */}
-
-                <p className="mt-2 hidden sm:block text-sm leading-6 text-ink/60">
-
-                  {card.subtitle}
-
-                </p>
-
-                {/* Footer */}
-
-                <div className="mt-4 sm:mt-6 flex items-center gap-2">
-
-                  <span className="h-2 w-2 rounded-full bg-emerald" />
-
-                  <span className="hidden lg:inline text-xs text-ink/45">
-                    Updated from your latest activity
-                  </span>
-
-                  <span className="text-[10px] text-ink/45 lg:hidden">
-                    Updated
-                  </span>
-
-                </div>
-
-              </div>
-
-            </div>
-          );
-        })}
+        {cards.map((card) => (
+          <StatCard
+            key={card.title}
+            icon={card.icon}
+            title={card.title}
+            value={card.value}
+          />
+        ))}
 
       </div>
 
     </section>
+  );
+}
+
+function StatCard({ icon: Icon, title, value }) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-emerald/10 bg-white px-3.5 py-3 transition duration-300 hover:border-brass/30">
+
+      <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brass/10 text-brass">
+        <Icon size={14} />
+      </div>
+
+      <div className="min-w-0">
+        <h3 className="font-display text-lg font-semibold leading-none text-emerald-deep sm:text-xl">
+          {value}
+        </h3>
+        <p className="mt-1 truncate text-[9px] uppercase tracking-[0.1em] text-ink/45 sm:text-[10px]">
+          {title}
+        </p>
+      </div>
+
+    </div>
   );
 }

@@ -30,8 +30,8 @@ export default function Admin() {
 </Helmet>
     <AdminProvider>
     <section className="min-h-[calc(100vh-80px)] bg-cream">
-      <div className="container-luxe py-8">
-        <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
+      <div className="container-luxe py-3 sm:py-4 lg:py-6">
+        <div className="grid gap-3 sm:gap-4 lg:grid-cols-[200px_1fr] lg:gap-6">
 
           {/* Sidebar */}
           <AdminSidebar
@@ -51,7 +51,7 @@ export default function Admin() {
             )}
 
             {page === "add-project" && (
-             <div className="rounded-3xl bg-white p-8 shadow-soft">
+             <div className="rounded-lg border border-emerald/10 bg-white p-2.5 shadow-soft sm:rounded-xl sm:p-4 lg:p-5">
              <ProjectForm
             onSaved={() => setPage("projects")}
             onClose={() => setPage("projects")}
