@@ -9,39 +9,41 @@ export default function ReviewFilters({
   setRating,
 }) {
   return (
-    <div className="mt-8 rounded-2xl border border-emerald/10 bg-white p-6 shadow-soft">
+    <div className="mt-4 rounded-lg border border-emerald/10 bg-white p-3 shadow-soft sm:mt-8 sm:rounded-2xl sm:p-6">
 
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid grid-cols-3 gap-2 sm:gap-5">
 
         {/* Search */}
 
-        <div>
-          <label className="mb-2 flex items-center gap-2 text-sm font-medium text-emerald-deep">
-            <Search size={16} />
-            Search Review
+        <div className="min-w-0">
+          <label className="mb-1 flex items-center gap-1 text-[10px] font-medium text-emerald-deep sm:mb-2 sm:gap-2 sm:text-sm">
+            <Search size={12} className="shrink-0 sm:hidden" />
+            <Search size={16} className="hidden shrink-0 sm:block" />
+            <span className="truncate">Search Review</span>
           </label>
 
           <input
             type="text"
-            placeholder="Search by customer name..."
+            placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/20"
+            className="w-full min-w-0 rounded-md border border-gray-300 px-2 py-2 text-[11px] outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/20 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
           />
         </div>
 
         {/* Status */}
 
-        <div>
-          <label className="mb-2 flex items-center gap-2 text-sm font-medium text-emerald-deep">
-            <Filter size={16} />
-            Review Status
+        <div className="min-w-0">
+          <label className="mb-1 flex items-center gap-1 text-[10px] font-medium text-emerald-deep sm:mb-2 sm:gap-2 sm:text-sm">
+            <Filter size={12} className="shrink-0 sm:hidden" />
+            <Filter size={16} className="hidden shrink-0 sm:block" />
+            <span className="truncate">Status</span>
           </label>
 
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/20"
+            className="w-full min-w-0 rounded-md border border-gray-300 px-1.5 py-2 text-[11px] outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/20 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
           >
             <option value="all">All Reviews</option>
             <option value="approved">Approved</option>
@@ -52,15 +54,15 @@ export default function ReviewFilters({
 
         {/* Rating */}
 
-        <div>
-          <label className="mb-2 text-sm font-medium text-emerald-deep">
+        <div className="min-w-0">
+          <label className="mb-1 truncate text-[10px] font-medium text-emerald-deep sm:mb-2 sm:text-sm">
             Rating
           </label>
 
           <select
             value={rating}
             onChange={(e) => setRating(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/20"
+            className="w-full min-w-0 rounded-md border border-gray-300 px-1.5 py-2 text-[11px] outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/20 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
           >
             <option value="all">All Ratings</option>
             <option value="5">⭐⭐⭐⭐⭐</option>
