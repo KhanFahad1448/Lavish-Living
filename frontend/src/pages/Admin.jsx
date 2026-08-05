@@ -43,7 +43,7 @@ export default function Admin() {
           <div>
 
             {page === "dashboard" && (
-              <DashboardStats />
+              <DashboardStats setPage={setPage} />
             )}
 
             {page === "projects" && (

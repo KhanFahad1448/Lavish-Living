@@ -104,11 +104,11 @@ export default function Contact() {
               Reach Us Directly
             </p>
 
-            <h2 className="mt-2 font-display text-xl font-semibold leading-tight tracking-tight text-emerald-deep sm:mt-3 sm:text-2xl md:text-3xl">
+            {/* <h2 className="mt-2 font-display text-xl font-semibold leading-tight tracking-tight text-emerald-deep sm:mt-3 sm:text-2xl md:text-3xl">
               Four ways to
               <br />
               start the conversation.
-            </h2>
+            </h2> */}
 
             <div className="mt-5 divide-y divide-emerald/10 border-t border-emerald/10 sm:mt-7">
 

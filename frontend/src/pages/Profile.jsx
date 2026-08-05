@@ -8,12 +8,17 @@ import ProfileStats from "../components/profile/ProfileStats";
 import RecentActivity from "../components/profile/RecentActivity";
 import SecurityCard from "../components/profile/SecurityCard";
 import PersonalInformation from "../components/profile/PersonalInformation";
+import EditProfileModal from "../components/profile/EditProfileModal";
+import ChangePasswordModal from "../components/profile/ChangePasswordModal";
 
 export default function Profile() {
   const { user } = useAuth();
 
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [editOpen, setEditOpen] = useState(false);
+  const [passwordOpen, setPasswordOpen] = useState(false);
 
   useEffect(() => {
     fetchMyInquiries();
@@ -48,8 +53,8 @@ export default function Profile() {
           <ProfileHero
             user={user}
             totalEnquiries={inquiries.length}
-            onEdit={() => {}}
-            onChangePassword={() => {}}
+            onEdit={() => setEditOpen(true)}
+            onChangePassword={() => setPasswordOpen(true)}
           />
 
           <ProfileStats
@@ -59,14 +64,31 @@ export default function Profile() {
             reviews={0}
           />
 
+          <div className="mt-5 sm:mt-6">
+            <SecurityCard onChangePassword={() => setPasswordOpen(true)} />
+          </div>
+
           <PersonalInformation
             user={user}
-            onEdit={() => {}}
+            onEdit={() => setEditOpen(true)}
           />
 
         </div>
 
       </section>
+
+      {editOpen && (
+        <EditProfileModal
+          user={user}
+          onClose={() => setEditOpen(false)}
+        />
+      )}
+
+      {passwordOpen && (
+        <ChangePasswordModal
+          onClose={() => setPasswordOpen(false)}
+        />
+      )}
     </>
   );
 }

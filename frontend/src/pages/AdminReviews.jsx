@@ -1,6 +1,6 @@
-
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
 import { api } from "../lib/api";
 
 import ReviewStats from "../components/admin/reviews/ReviewStats";
@@ -100,12 +100,13 @@ export default function AdminReviews() {
 
   return(
     <div className="section-pad bg-cream min-h-screen">
-      <div className="container-luxe">
-        <div className="mb-8">
-          <h1 className="font-display text-4xl text-emerald-deep">
+      <div className="container-luxe px-2.5 py-3 sm:px-6 sm:py-8">
+
+        <div className="mb-3 sm:mb-8">
+          <h1 className="font-display text-lg font-semibold tracking-tight text-emerald-deep sm:text-4xl sm:font-normal sm:tracking-normal">
             Review Management
           </h1>
-          <p className="mt-2 text-ink/60">
+          <p className="mt-0.5 text-[11px] text-ink/60 sm:mt-2 sm:text-base">
             Manage customer testimonials and approvals.
           </p>
         </div>
@@ -122,8 +123,11 @@ export default function AdminReviews() {
         />
 
         {loading ? (
-          <div className="mt-10 text-center text-emerald-deep">
-            Loading reviews...
+          <div className="mt-6 flex flex-col items-center justify-center py-8 text-emerald-deep sm:mt-10 sm:py-10">
+            <Loader2 size={20} className="animate-spin sm:size-6" />
+            <p className="mt-2 text-[11px] sm:text-sm">
+              Loading reviews...
+            </p>
           </div>
         ) : (
           <ReviewTable

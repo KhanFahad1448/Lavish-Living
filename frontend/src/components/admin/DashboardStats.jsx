@@ -2,12 +2,10 @@ import {
   FolderKanban,
   Star,
   MessageSquare,
-  Bell,
   PlusCircle,
   FolderOpen,
   ClipboardList,
   Loader2,
-  ArrowUpRight,
 } from "lucide-react";
 
 import { useAdmin } from "../../context/AdminContext";
@@ -15,7 +13,7 @@ import { useAdmin } from "../../context/AdminContext";
 const hexClip =
   "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)";
 
-export default function DashboardStats() {
+export default function DashboardStats({ setPage }) {
   const {
     projects,
     inquiries,
@@ -203,9 +201,21 @@ export default function DashboardStats() {
 
         <div className="mt-2.5 flex flex-wrap gap-3 sm:mt-3 sm:gap-5">
 
-          <QuickAction icon={PlusCircle} label="Add Project" />
-          <QuickAction icon={FolderOpen} label="Manage Projects" />
-          <QuickAction icon={ClipboardList} label="View Inquiries" />
+          <QuickAction
+            icon={PlusCircle}
+            label="Add Project"
+            onClick={() => setPage?.("add-project")}
+          />
+          <QuickAction
+            icon={FolderOpen}
+            label="Manage Projects"
+            onClick={() => setPage?.("projects")}
+          />
+          <QuickAction
+            icon={ClipboardList}
+            label="View Inquiries"
+            onClick={() => setPage?.("inquiries")}
+          />
 
         </div>
 
@@ -232,9 +242,9 @@ function Divider() {
   return <span className="h-5 w-px bg-white/10 sm:h-6" />;
 }
 
-function QuickAction({ icon: Icon, label }) {
+function QuickAction({ icon: Icon, label, onClick }) {
   return (
-    <button className="group flex flex-col items-center gap-1">
+    <button type="button" onClick={onClick} className="group flex flex-col items-center gap-1">
       <span
         className="grid h-9 w-9 place-items-center bg-gradient-luxe text-brass shadow-md transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg sm:h-10 sm:w-10"
         style={{ clipPath: hexClip }}

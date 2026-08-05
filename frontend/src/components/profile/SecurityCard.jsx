@@ -7,7 +7,7 @@ import {
   Fingerprint,
 } from "lucide-react";
 
-export default function SecurityCard() {
+export default function SecurityCard({ onChangePassword }) {
   return (
     <section className="rounded-2xl border border-emerald/10 bg-white p-4 shadow-soft sm:rounded-3xl sm:p-6 lg:p-8">
 
@@ -103,7 +103,10 @@ export default function SecurityCard() {
             Update regularly to keep your account protected.
           </p>
 
-          <button className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-brass px-3.5 py-2 text-xs font-semibold text-brass transition hover:bg-brass hover:text-white sm:mt-3.5 sm:px-4 sm:py-2.5 sm:text-sm">
+          <button
+            onClick={onChangePassword}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-brass px-3.5 py-2 text-xs font-semibold text-brass transition hover:bg-brass hover:text-white sm:mt-3.5 sm:px-4 sm:py-2.5 sm:text-sm"
+          >
             Change Password
             <ArrowRight size={13} />
           </button>

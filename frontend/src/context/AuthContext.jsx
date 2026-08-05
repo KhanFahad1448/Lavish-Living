@@ -84,6 +84,22 @@ export function AuthProvider({ children }) {
     setUser(null);
   }
 
+  // Update profile (name, phone, location)
+  async function updateProfile(fields) {
+    const { data } = await api.put("/auth/update-profile", fields);
+    setUser(data.user);
+    return data.user;
+  }
+
+  // Change password
+  async function changePassword(currentPassword, newPassword) {
+    const { data } = await api.put("/auth/change-password", {
+      currentPassword,
+      newPassword,
+    });
+    return data;
+  }
+
   return (
     <AuthCtx.Provider
       value={{
@@ -92,6 +108,8 @@ export function AuthProvider({ children }) {
         login,
         signup,
         logout,
+        updateProfile,
+        changePassword,
       }}
     >
       {children}
